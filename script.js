@@ -1,37 +1,9 @@
-//Variables
+// Variables
 let products = [];
 let joinedProducts;
 let sales = [];
 let productsAmount;
 let defaultProducts = ["gorras", "sombreros", "camperas", "remeras"];
-
-// Función para cargar productos
-function chargeProducts(amount) {
-  for (let i = 0; i < amount; i++) {
-    let status;
-    while (status != "ok") {
-      let product;
-      product = prompt(`Ingresá tu producto número ${i + 1} :`);
-      if (product === null) {
-        alert(
-          "Proceso cancelado. Tu lista de productos será una cargada por defecto"
-        );
-        console.log(
-          "Proceso cancelado. Tu lista de productos será una cargada por defecto"
-        );
-        return (products = defaultProducts);
-      } else if (!isNaN(product) || product === "") {
-        alert(
-          "No se pudo cargar tu producto. Asegurate de no ingresar números ni dejar espacios en blanco"
-        );
-        console.log("Error al cargar nuevo producto");
-      } else {
-        products.push(product);
-        status = "ok";
-      }
-    }
-  }
-}
 
 // Agregar un método para hacer mayúscula la primer letra de un string
 String.prototype.firstCharToUpperCase = function () {
@@ -39,8 +11,8 @@ String.prototype.firstCharToUpperCase = function () {
 };
 
 // Función para agrupar productos en una lista
-function joinProducts(products) {
-  joinedProducts = products
+function joinProducts(productsList) {
+  joinedProducts = productsList
     .map((product) => product.firstCharToUpperCase())
     .join("\n");
 }
@@ -67,6 +39,34 @@ function validPositiveNumber(promptMessage) {
     } else {
       console.log("Debés ingresar un número positivo");
       alert("Debés ingresar un número positivo");
+    }
+  }
+}
+
+// Función para cargar productos
+function chargeProducts(amount) {
+  for (let i = 0; i < amount; i++) {
+    let status;
+    while (status != "ok") {
+      let product;
+      product = prompt(`Ingresá tu producto número ${i + 1} :`);
+      if (product === null) {
+        alert(
+          "Proceso cancelado. Tu lista de productos será una cargada por defecto"
+        );
+        console.log(
+          "Proceso cancelado. Tu lista de productos será una cargada por defecto"
+        );
+        return (products = defaultProducts);
+      } else if (!isNaN(product) || product === "") {
+        alert(
+          "No se pudo cargar tu producto. Asegurate de no ingresar números ni dejar espacios en blanco"
+        );
+        console.log("Error al cargar nuevo producto");
+      } else {
+        products.push(product);
+        status = "ok";
+      }
     }
   }
 }
@@ -105,7 +105,7 @@ function salesRegister() {
 function askForRegister() {
   let startRegister;
   do {
-    startRegister = prompt("¿Quiere registrar una venta? (SI/NO)", "SI");
+    startRegister = prompt("¿Querés registrar una venta? (SI/NO)", "SI");
     if (startRegister === null) {
       console.log(
         "Proceso de registro cancelado. Actualizá para volver a iniciar"
@@ -135,15 +135,16 @@ function showSales() {
     return;
   }
 
-  console.log("Ventas registradas el dia de hoy:");
+  console.log("Ventas registradas el día de hoy:");
   for (let sale of sales) {
     console.log(`${sale.amount} unidades de ${sale.product}`);
   }
   alert(
-    `Registraste ${sales.length} ventas.\nPuedes actualizar la pagina para volver a empezar`
+    `Registraste ${sales.length} ventas.\nPodés actualizar la página para volver a empezar`
   );
 }
-//Saludo al usuario y petición de cantidad de productos
+
+// Saludo al usuario y petición de cantidad de productos
 alert(
   "Bienvenido al simulador de registro!\nAquí podrás cargar tus productos y registrar tus ventas de manera fácil y rápida."
 );
@@ -151,7 +152,7 @@ productsAmount = validPositiveNumber(
   "Comencemos!\nIngresá el número de productos que quieres cargar a tu lista"
 );
 
-// Llamadas a las funciones (recordar que la función salesRegister() se llama dentro de la función askForRegister())
+// Llamadas a las funciones
 chargeProducts(productsAmount);
 joinProducts(products);
 askForRegister();
