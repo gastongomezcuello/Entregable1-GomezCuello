@@ -5,25 +5,25 @@ let sales = [];
 let productsAmount;
 let defaultProducts = ["gorras", "sombreros", "camperas", "remeras"];
 
-// Agregar un método para hacer mayúscula la primer letra de un string
-String.prototype.firstCharToUpperCase = function () {
-  return this.charAt(0).toUpperCase() + this.slice(1);
-};
+// Agregar un función para hacer mayúscula la primer letra de un string
+function firstCharToUpperCase(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
 
 // Función para agrupar productos en una lista
 function joinProducts(productsList) {
   joinedProducts = productsList
-    .map((product) => product.firstCharToUpperCase())
+    .map((product) => firstCharToUpperCase(product))
     .join("\n");
 }
 
 // Función para validar e ingresar números positivos
 function validPositiveNumber(promptMessage) {
   let amount = 0;
-  while (amount < 1 || isNaN(amount)) {
+  while (amount <= 0 || isNaN(amount)) {
     amount = parseInt(
       prompt(
-        `${promptMessage}\n(para correcto llamado a funciones no podrás cancelar este proceso, disculpá las molestias)`
+        `${promptMessage}\n(para correcto llamado a funciones no podrás cancelar este proceso, disculpá las molestias).`
       )
     );
     if (amount > 0) {
@@ -31,10 +31,10 @@ function validPositiveNumber(promptMessage) {
       return amount;
     } else if (isNaN(amount)) {
       console.log(
-        "El valor ingresado no es un número. Por favor ingresá solamente números"
+        "El valor ingresado no es un número. Por favor ingresá solamente números."
       );
       alert(
-        "El valor ingresado no es un número. Por favor ingresá solamente números"
+        "El valor ingresado no es un número. Por favor ingresá solamente números.\n(para correcto llamado a funciones no podrás cancelar este proceso, disculpá las molestias)."
       );
     } else {
       console.log("Debés ingresar un número positivo");
@@ -52,19 +52,20 @@ function chargeProducts(amount) {
       product = prompt(`Ingresá tu producto número ${i + 1} :`);
       if (product === null) {
         alert(
-          "Proceso cancelado. Tu lista de productos será una cargada por defecto"
+          "Proceso cancelado. Tu lista de productos será cargada por defecto."
         );
         console.log(
-          "Proceso cancelado. Tu lista de productos será una cargada por defecto"
+          "Proceso cancelado. Tu lista de productos será cargada por defecto."
         );
         return (products = defaultProducts);
       } else if (!isNaN(product) || product === "") {
         alert(
           "No se pudo cargar tu producto. Asegurate de no ingresar números ni dejar espacios en blanco"
         );
-        console.log("Error al cargar nuevo producto");
+        console.log("Error al cargar nuevo producto.");
       } else {
-        products.push(product);
+        products.push(product.toLowerCase());
+        console.log(products);
         status = "ok";
       }
     }
@@ -77,27 +78,31 @@ function salesRegister() {
   while (!products.includes(product)) {
     product = prompt(
       `Escribí el producto que hayas vendido. Estos son los productos disponibles:\n${joinedProducts}`
-    ).toLowerCase();
+    );
     if (product === null) {
       console.log(
-        "Proceso de registro cancelado. Actualizá para volver a iniciar"
+        "Proceso de registro cancelado. Actualizá para volver a iniciar."
       );
+      alert("Proceso de registro cancelado. Actualizá para volver a iniciar.");
       return;
     }
-    if (products.includes(product)) {
-      console.log("Producto seleccionado correctamente");
+    if (products.includes(product.toLowerCase())) {
+      console.log("Producto seleccionado correctamente.");
+      product = product.toLowerCase();
     } else {
       console.log(
-        "El producto seleccionado no se encuentra entre las opciones"
+        "El producto seleccionado no se encuentra entre las opciones. Intenta nuevamente"
       );
-      alert("El producto seleccionado no se encuentra entre las opciones");
+      alert(
+        "El producto seleccionado no se encuentra entre las opciones. Intenta nuevamente"
+      );
     }
   }
-  let amount = validPositiveNumber("Ingresá la cantidad vendida");
+  let amount = validPositiveNumber("Ingresá la cantidad que hayas vendido.");
   sales.push({ product, amount });
   console.log(`Venta registrada: ${amount} unidades de ${product}`);
   alert(
-    `Venta registrada: ${amount} unidades de ${product} \n Continuá con el registro`
+    `Venta registrada: ${amount} unidades de ${product} \n Continuá con el registro.`
   );
 }
 
