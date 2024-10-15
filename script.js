@@ -65,7 +65,6 @@ function chargeProducts(amount) {
         console.log("Error al cargar nuevo producto.");
       } else {
         products.push(product.toLowerCase());
-        console.log(products);
         status = "ok";
       }
     }
