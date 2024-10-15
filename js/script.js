@@ -1,7 +1,6 @@
 // Variables
 let products = [];
 let joinedProducts;
-let sales = [];
 let productsAmount;
 let defaultProducts = ["gorras", "sombreros", "camperas", "remeras"];
 
@@ -98,7 +97,6 @@ function salesRegister() {
     }
   }
   let amount = validPositiveNumber("Ingresá la cantidad que hayas vendido.");
-  sales.push({ product, amount });
   console.log(`Venta registrada: ${amount} unidades de ${product}`);
   alert(
     `Venta registrada: ${amount} unidades de ${product} \n Continuá con el registro.`
@@ -131,23 +129,6 @@ function askForRegister() {
   } while (startRegister !== "NO");
 }
 
-// Función para mostrar todas las ventas
-function showSales() {
-  if (sales.length === 0) {
-    console.log("No hay ventas registradas.");
-    alert("No hay ventas registradas");
-    return;
-  }
-
-  console.log("Ventas registradas el día de hoy:");
-  for (let sale of sales) {
-    console.log(`${sale.amount} unidades de ${sale.product}`);
-  }
-  alert(
-    `Registraste ${sales.length} ventas.\nPodés actualizar la página para volver a empezar`
-  );
-}
-
 // Saludo al usuario y petición de cantidad de productos
 alert(
   "Bienvenido al simulador de registro!\nAquí podrás cargar tus productos y registrar tus ventas de manera fácil y rápida."
@@ -160,4 +141,3 @@ productsAmount = validPositiveNumber(
 chargeProducts(productsAmount);
 joinProducts(products);
 askForRegister();
-showSales();
