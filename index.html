@@ -3,11 +3,51 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <!-- <script defer src="./js/script.js"></script> -->
     <title>Simulador Comercial</title>
-    <script defer src="./js/script.js"></script>
   </head>
-  <body>
-    <h1>Gomez Cuello Gaston</h1>
-    <h2>Empezamos</h2>
+
+  <body style="background-color: aqua">
+    <header style="background-color: blueviolet">
+      <h1>Dashboard</h1>
+      <button id="menu-toggle">☰ Menú</button>
+    </header>
+    <aside style="background-color: brown" class="sidebar">
+      <nav>
+        <ul>
+          <li><a href="#resume">Resumen</a></li>
+          <li><a href="#sales">Ventas</a></li>
+          <li><a href="#products">Productos</a></li>
+          <li><a href="#reports">Reportes</a></li>
+          <li><a href="#settings">Configuración</a></li>
+        </ul>
+      </nav>
+    </aside>
+    <main style="background-color: yellowgreen">
+      <section id="resume">
+        <h2>Resumen</h2>
+        <p>Información general del negocio</p>
+      </section>
+      <section id="sales">
+        <h2>Ventas</h2>
+        <p>Registro de ventas</p>
+      </section>
+      <section id="products">
+        <h2>Productos</h2>
+        <p>Registro de productos</p>
+      </section>
+      <section id="reports">
+        <h2>Reportes</h2>
+        <p>Reportes de ventas</p>
+      </section>
+      <section id="settings">
+        <h2>Configuración</h2>
+        <p>Configuración de la aplicación</p>
+      </section>
+    </main>
+    <footer style="background-color: yellow">
+      © 2024 Dashboard de Ventas. Todos los derechos reservados.
+    </footer>
   </body>
 </html>

@@ -1,0 +1,61 @@
+// colors
+$ligth-color: #f3f3f3;
+$dark-color: #2a2208;
+$primary-color: #ffc400;
+$secondary-color: #2a2208;
+$background-color: linear-gradient(60deg, #ffc400 0%, #f3a32b 100%);
+
+// fonts
+
+$font-family: "Quicksand", sans-serif;
+
+$font-desktop-size-xxl: 6rem;
+$font-desktop-size-xl: 3.5rem;
+$font-desktop-size-lg: 2.5rem;
+$font-desktop-size-md: 2rem;
+$font-desktop-size-sm: 1.8rem;
+
+$font-tablet-size-xxl: 5rem;
+$font-tablet-size-xl: 3rem;
+$font-tablet-size-lg: 2rem;
+$font-tablet-size-md: 1.6rem;
+$font-tablet-size-sm: 1.3rem;
+
+$font-mobile-size-xxl: 4rem;
+$font-mobile-size-xl: 2.5rem;
+$font-mobile-size-lg: 2rem;
+$font-mobile-size-md: 1.6rem;
+$font-mobile-size-sm: 1.3rem;
+
+// text-shadow / box-shadow
+
+$text-shadow: 0.15rem 0.15rem 0.6rem $secondary-color;
+$box-shadow: 0px 4px 10px $secondary-color;
+
+// normalized p-m m-bot m-top lat-p p-top
+
+$padding-top-xl: 20px;
+$padding-top-lg: 13px;
+$padding-top-md: 7px;
+
+$lateral-padding-xl: 12px;
+$lateral-padding-lg: 15px;
+$lateral-padding-md: 18px;
+
+$padding-margin-xl: 20px;
+$padding-margin-lg: 13px;
+$padding-margin-md: 7px;
+
+$margin-top-xl: 20px;
+$margin-top-lg: 13px;
+$margin-top-md: 7px;
+
+$margin-bottom-xl: 20px;
+$margin-bottom-lg: 13px;
+$margin-bottom-md: 7px;
+
+// border-radius
+
+$border-radius-xl: 60px;
+$border-radius-lg: 30px;
+$border-radius-md: 15px;
