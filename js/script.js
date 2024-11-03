@@ -5,6 +5,12 @@ let sales = [];
 let productsAmount;
 let defaultProducts = ["gorras", "sombreros", "camperas", "remeras"];
 
+// Función myOnClick
+
+function myOnClick(node, callback) {
+  node.addEventListener("click", callback);
+}
+
 // Agregar un función para hacer mayúscula la primer letra de un string
 function firstCharToUpperCase(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);

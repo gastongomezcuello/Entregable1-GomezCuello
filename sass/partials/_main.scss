@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  header,
+  footer {
+    background-color: $dark-color;
+    color: $ligth-color;
+    text-align: center;
+    padding: $padding-margin-lg;
+  }
+  main {
+    padding: $padding-margin-lg;
+  }
+  .sidebar {
+    display: none;
+  }
+}
+
+#menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: $ligth-color;
+  font-size: $font-mobile-size-lg;
+}

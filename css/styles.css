@@ -15,9 +15,26 @@ body {
   display: flex;
   flex-direction: column;
 }
-
-.sidebar {
+body header,
+body footer {
+  background-color: #2a2208;
+  color: #f3f3f3;
+  text-align: center;
+  padding: 13px;
+}
+body main {
+  padding: 13px;
+}
+body .sidebar {
   display: none;
+}
+
+#menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: #f3f3f3;
+  font-size: 2rem;
 }
 
 /*# sourceMappingURL=styles.css.map */
