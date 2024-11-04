@@ -135,19 +135,7 @@ function askForRegister() {
 
 
 
-// Saludo al usuario y petición de cantidad de productos
-// alert(
-//   "Bienvenido al simulador de registro!\nAquí podrás cargar tus productos y registrar tus ventas de manera fácil y rápida."
-// );
-// productsAmount = validPositiveNumber(
-//   "Comencemos!\nIngresá el número de productos que quieres cargar a tu lista"
-// );
 
-// Llamadas a las funciones
-// chargeProducts(productsAmount);
-// joinProducts(products);
-// askForRegister();
-// showSales();
 
 
 //Interactuando con el DOM
@@ -168,7 +156,7 @@ let productsNode = document.getElementById("products")
 let reportsNode = document.getElementById("reports")
 let settingsNode = document.getElementById("settings")
 
-
+console.log(resumeNode);
 //Creando nodos
 
 let resumeContent = document.createElement("section")
@@ -178,30 +166,31 @@ let reportsContent = document.createElement("section")
 let settingsContent = document.createElement("section") // esta quizas no se usa 
 
 
+
+
 //Renderizando resume
 // Función para mostrar todas las ventas
 
 
 function showSales() {
   if (sales.length === 0) {
-    console.log("No hay ventas registradas.");
-    alert("No hay ventas registradas");
-    return;
+    resumeContent.innerHTML = "<h3>No tienes ventas registradas el día de hoy</h3>"
+    resumeNode.appendChild(resumeContent)
+     return
   }
-
-  console.log("Ventas registradas el día de hoy:");
+  resumeContent.innerHTML = `<h3>Hoy registraste ${sales.length} ventas</h3>`
   for (let sale of sales) {
-    console.log(`${sale.amount} unidades de ${sale.product}`);
+    let saleInfo = document.createElement ("p")
+    saleInfo.innerText = `${sale.amount} unidades de ${sale.product}`
+    resumeContent.appendChild(saleInfo)
   }
-  alert(
-    `Registraste ${sales.length} ventas.\nPodés actualizar la página para volver a empezar`
-  );
+  resumeNode.appendChild(resumeContent)
 }
 
 
-resumeContent.innerHTML = "<h3>No tienes ventas registradas el día de hoy</h3>"
-resumeContent.innerHTML = `<h3>Ventas del día de hoy</h3>
-                           <p>${sales.length}</p> `
+
+// resumeContent.innerHTML = `<h3>Ventas del día de hoy</h3>
+//                            <p>${sales.length}</p> `
 
 //Funciones
 
@@ -214,5 +203,18 @@ myOnClick(toggleButtonNode, ()=>{
   }
 })
 
+// Saludo al usuario y petición de cantidad de productos
+alert(
+  "Bienvenido al simulador de registro!\nAquí podrás cargar tus productos y registrar tus ventas de manera fácil y rápida."
+);
+productsAmount = validPositiveNumber(
+  "Comencemos!\nIngresá el número de productos que quieres cargar a tu lista"
+);
+
+// Llamadas a las funciones
+chargeProducts(productsAmount);
+joinProducts(products);
+askForRegister();
+showSales();
 
 
