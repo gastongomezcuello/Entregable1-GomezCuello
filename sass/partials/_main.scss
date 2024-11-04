@@ -16,6 +16,7 @@ body {
   flex-direction: column;
   header,
   footer {
+    display: grid;
     background-color: $dark-color;
     color: $ligth-color;
     text-align: center;
@@ -26,6 +27,19 @@ body {
   }
   .sidebar {
     display: none;
+  
+  }
+  .sidebar.sidebar-active {
+    display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%; /* Puedes ajustar el ancho */
+  height: 100%;
+  background-color: #444;
+  color: #fff;
+  padding: 1rem;
+  z-index: 10;
   }
 }
 
@@ -35,4 +49,5 @@ body {
   border: none;
   color: $ligth-color;
   font-size: $font-mobile-size-lg;
+  justify-self: end;
 }

@@ -5,11 +5,7 @@ let sales = [];
 let productsAmount;
 let defaultProducts = ["gorras", "sombreros", "camperas", "remeras"];
 
-// Función myOnClick
 
-function myOnClick(node, callback) {
-  node.addEventListener("click", callback);
-}
 
 // Agregar un función para hacer mayúscula la primer letra de un string
 function firstCharToUpperCase(str) {
@@ -137,7 +133,55 @@ function askForRegister() {
   } while (startRegister !== "NO");
 }
 
+
+
+// Saludo al usuario y petición de cantidad de productos
+// alert(
+//   "Bienvenido al simulador de registro!\nAquí podrás cargar tus productos y registrar tus ventas de manera fácil y rápida."
+// );
+// productsAmount = validPositiveNumber(
+//   "Comencemos!\nIngresá el número de productos que quieres cargar a tu lista"
+// );
+
+// Llamadas a las funciones
+// chargeProducts(productsAmount);
+// joinProducts(products);
+// askForRegister();
+// showSales();
+
+
+//Interactuando con el DOM
+
+// Función myOnClick
+
+function myOnClick(node, callback) {
+  node.addEventListener("click", callback);
+}
+
+//Capturando nodos
+
+let toggleButtonNode = document.getElementById("menu-toggle");
+let sidebarNode = document.querySelector(".sidebar");
+let resumeNode = document.getElementById("resume")
+let salesNode = document.getElementById("sales")
+let productsNode = document.getElementById("products")
+let reportsNode = document.getElementById("reports")
+let settingsNode = document.getElementById("settings")
+
+
+//Creando nodos
+
+let resumeContent = document.createElement("section")
+let salesContent = document.createElement("section")
+let productsContent = document.createElement("section")
+let reportsContent = document.createElement("section")
+let settingsContent = document.createElement("section") // esta quizas no se usa 
+
+
+//Renderizando resume
 // Función para mostrar todas las ventas
+
+
 function showSales() {
   if (sales.length === 0) {
     console.log("No hay ventas registradas.");
@@ -154,16 +198,21 @@ function showSales() {
   );
 }
 
-// Saludo al usuario y petición de cantidad de productos
-alert(
-  "Bienvenido al simulador de registro!\nAquí podrás cargar tus productos y registrar tus ventas de manera fácil y rápida."
-);
-productsAmount = validPositiveNumber(
-  "Comencemos!\nIngresá el número de productos que quieres cargar a tu lista"
-);
 
-// Llamadas a las funciones
-chargeProducts(productsAmount);
-joinProducts(products);
-askForRegister();
-showSales();
+resumeContent.innerHTML = "<h3>No tienes ventas registradas el día de hoy</h3>"
+resumeContent.innerHTML = `<h3>Ventas del día de hoy</h3>
+                           <p>${sales.length}</p> `
+
+//Funciones
+
+myOnClick(toggleButtonNode, ()=>{
+  if (sidebarNode.className === "sidebar") {
+    sidebarNode.className = "sidebar sidebar-active"
+  }
+  else {
+    sidebarNode.className = "sidebar"
+  }
+})
+
+
+
