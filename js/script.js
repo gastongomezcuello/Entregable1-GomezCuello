@@ -20,30 +20,19 @@ function joinProducts(productsList) {
 }
 
 // Función para validar e ingresar números positivos
-function validPositiveNumber(promptMessage) {
-  let amount = 0;
-  while (amount <= 0 || isNaN(amount)) {
-    amount = parseInt(
-      prompt(
-        `${promptMessage}\n(para correcto llamado a funciones no podrás cancelar este proceso, disculpá las molestias).`
-      )
-    );
-    if (amount > 0) {
+function validPositiveNumber(amount) {
+    if (parseInt(amount) > 0) {
       console.log("Cantidad ingresada correctamente");
       return amount;
-    } else if (isNaN(amount)) {
+    } else if (isNaN(parseInt(amount))) {
       console.log(
         "El valor ingresado no es un número. Por favor ingresá solamente números."
       );
-      alert(
-        "El valor ingresado no es un número. Por favor ingresá solamente números.\n(para correcto llamado a funciones no podrás cancelar este proceso, disculpá las molestias)."
-      );
     } else {
       console.log("Debés ingresar un número positivo");
-      alert("Debés ingresar un número positivo");
     }
   }
-}
+
 
 // Función para cargar productos
 function chargeProducts(amount) {
@@ -107,31 +96,6 @@ function salesRegister() {
   );
 }
 
-// Función para preguntar al usuario si quiere registrar un producto
-function askForRegister() {
-  let startRegister;
-  do {
-    startRegister = prompt("¿Querés registrar una venta? (SI/NO)", "SI");
-    if (startRegister === null) {
-      console.log(
-        "Proceso de registro cancelado. Actualizá para volver a iniciar"
-      );
-      alert("Proceso de registro cancelado. Actualizá para volver a iniciar");
-      return;
-    }
-    startRegister = startRegister.toUpperCase();
-
-    if (startRegister === "SI") {
-      salesRegister();
-    } else if (startRegister === "NO") {
-      console.log("Terminaste el proceso de registro");
-      alert("Terminaste el proceso de registro");
-    } else {
-      console.log("Ingresá una opción válida");
-      alert("Ingresá una opción válida");
-    }
-  } while (startRegister !== "NO");
-}
 
 
 
