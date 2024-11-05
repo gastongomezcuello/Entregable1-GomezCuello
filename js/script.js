@@ -1,106 +1,61 @@
 // Variables
 let products = [];
-let joinedProducts;
 let sales = [];
-let productsAmount;
-let defaultProducts = ["gorras", "sombreros", "camperas", "remeras"];
+let defaultProducts = [
+  {
+    name: "gorras",
+    price: 25,
+  },
+  {
+    name: "sombreros",
+    price: 30,
+  },
+  {
+    name: "camperas",
+    price: 50,
+  },
+  {
+    name: "remeras",
+    price: 20,
+  },
+];
 
-
-
-// Agregar un función para hacer mayúscula la primer letra de un string
+// Función para hacer mayúscula la primer letra de un string
 function firstCharToUpperCase(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-// Función para agrupar productos en una lista
-function joinProducts(productsList) {
-  joinedProducts = productsList
-    .map((product) => firstCharToUpperCase(product))
-    .join("\n");
-}
-
-// Función para validar e ingresar números positivos
+// Función para validar números positivos
 function validPositiveNumber(amount) {
-    if (parseInt(amount) > 0) {
-      console.log("Cantidad ingresada correctamente");
-      return amount;
-    } else if (isNaN(parseInt(amount))) {
-      console.log(
-        "El valor ingresado no es un número. Por favor ingresá solamente números."
-      );
-    } else {
-      console.log("Debés ingresar un número positivo");
-    }
-  }
-
-
-// Función para cargar productos
-function chargeProducts(amount) {
-  for (let i = 0; i < amount; i++) {
-    let status;
-    while (status != "ok") {
-      let product;
-      product = prompt(`Ingresá tu producto número ${i + 1} :`);
-      if (product === null) {
-        alert(
-          "Proceso cancelado. Tu lista de productos será cargada por defecto."
-        );
-        console.log(
-          "Proceso cancelado. Tu lista de productos será cargada por defecto."
-        );
-        return (products = defaultProducts);
-      } else if (!isNaN(product) || product === "") {
-        alert(
-          "No se pudo cargar tu producto. Asegurate de no ingresar números ni dejar espacios en blanco"
-        );
-        console.log("Error al cargar nuevo producto.");
-      } else {
-        products.push(product.toLowerCase());
-        status = "ok";
-      }
-    }
+  if (parseInt(amount) > 0) {
+    return parseInt(amount);
+  } else if (isNaN(parseInt(amount))) {
+    return "El valor ingresado no es un número. Por favor ingresá solamente números.";
+  } else {
+    return "El valor ingresado no es válido. Por favor ingresá un número positivo.";
   }
 }
 
 // Función para registrar una venta
-function salesRegister() {
-  let product;
-  while (!products.includes(product)) {
-    product = prompt(
-      `Escribí el producto que hayas vendido. Estos son los productos disponibles:\n${joinedProducts}`
-    );
-    if (product === null) {
-      console.log(
-        "Proceso de registro cancelado. Actualizá para volver a iniciar."
-      );
-      alert("Proceso de registro cancelado. Actualizá para volver a iniciar.");
-      return;
-    }
-    if (products.includes(product.toLowerCase())) {
-      console.log("Producto seleccionado correctamente.");
-      product = product.toLowerCase();
-    } else {
-      console.log(
-        "El producto seleccionado no se encuentra entre las opciones. Intenta nuevamente"
-      );
-      alert(
-        "El producto seleccionado no se encuentra entre las opciones. Intenta nuevamente"
-      );
-    }
+function salesRegister(productName, saleAmount) {
+  let product = products.find((product) => product.name === productName);
+  let amount = validPositiveNumber(saleAmount);
+  let transactionValue;
+
+  if (product == undefined) {
+    return "El producto no se encuentra en la lista no me hackees la página";
+  } else if (typeof amount == "string") {
+    return amount;
+  } else {
+    transactionValue = product.price * amount;
+    sales.push({
+      productSold: product.name,
+      quantity: amount,
+      transactionValue: transactionValue,
+    });
+    return "Has registrado una venta";
   }
-  let amount = validPositiveNumber("Ingresá la cantidad que hayas vendido.");
-  sales.push({ product, amount });
-  console.log(`Venta registrada: ${amount} unidades de ${product}`);
-  alert(
-    `Venta registrada: ${amount} unidades de ${product} \n Continuá con el registro.`
-  );
 }
-
-
-
-
-
-
 
 //Interactuando con el DOM
 
@@ -114,58 +69,66 @@ function myOnClick(node, callback) {
 
 let toggleButtonNode = document.getElementById("menu-toggle");
 let sidebarNode = document.querySelector(".sidebar");
-let resumeNode = document.getElementById("resume")
-let salesNode = document.getElementById("sales")
-let productsNode = document.getElementById("products")
-let reportsNode = document.getElementById("reports")
-let settingsNode = document.getElementById("settings")
+let resumeNode = document.getElementById("resume");
+let salesNode = document.getElementById("sales");
+let productsNode = document.getElementById("products");
+let reportsNode = document.getElementById("reports");
+let settingsNode = document.getElementById("settings");
 
-console.log(resumeNode);
+let resumeLinkNode = document.getElementById("resume-link");
+let salesLinkNode = document.getElementById("sales-link");
+let productsLinkNode = document.getElementById("products-link");
+let reportsLinkNode = document.getElementById("reports-link");
+let settingsLinkNode = document.getElementById("settings-link");
+
 //Creando nodos
 
-let resumeContent = document.createElement("section")
-let salesContent = document.createElement("section")
-let productsContent = document.createElement("section")
-let reportsContent = document.createElement("section")
-let settingsContent = document.createElement("section") // esta quizas no se usa 
+let resumeContent = document.createElement("section");
+let salesContent = document.createElement("section");
+let productsContent = document.createElement("section");
+let reportsContent = document.createElement("section");
+let settingsContent = document.createElement("section"); // esta quizas no se usa
 
+//Sidebar
 
+function sidebarActive() {
+  if (sidebarNode.className === "sidebar") {
+    sidebarNode.className = "sidebar sidebar-active";
+  } else {
+    sidebarNode.className = "sidebar";
+  }
+}
 
+myOnClick(toggleButtonNode, sidebarActive);
+myOnClick(resumeLinkNode, sidebarActive);
+myOnClick(salesLinkNode, sidebarActive);
+myOnClick(productsLinkNode, sidebarActive);
+myOnClick(reportsLinkNode, sidebarActive);
+myOnClick(settingsLinkNode, sidebarActive);
 
-//Renderizando resume
+//Resumen
 // Función para mostrar todas las ventas
-
 
 function showSales() {
   if (sales.length === 0) {
-    resumeContent.innerHTML = "<h3>No tienes ventas registradas el día de hoy</h3>"
-    resumeNode.appendChild(resumeContent)
-     return
+    resumeContent.innerHTML =
+      "<h3>No tienes ventas registradas el día de hoy</h3>";
+    resumeNode.appendChild(resumeContent);
+    return;
   }
-  resumeContent.innerHTML = `<h3>Hoy registraste ${sales.length} ventas</h3>`
-  for (let sale of sales) {
-    let saleInfo = document.createElement ("p")
-    saleInfo.innerText = `${sale.amount} unidades de ${sale.product}`
-    resumeContent.appendChild(saleInfo)
-  }
-  resumeNode.appendChild(resumeContent)
+  resumeContent.innerHTML = `<h3>Hoy registraste ${sales.length} ventas</h3>`;
+
+  resumeNode.appendChild(resumeContent);
 }
 
+//Ventas
 
+//Productos
+
+//Reportes
 
 // resumeContent.innerHTML = `<h3>Ventas del día de hoy</h3>
 //                            <p>${sales.length}</p> `
-
-//Funciones
-
-myOnClick(toggleButtonNode, ()=>{
-  if (sidebarNode.className === "sidebar") {
-    sidebarNode.className = "sidebar sidebar-active"
-  }
-  else {
-    sidebarNode.className = "sidebar"
-  }
-})
 
 // Saludo al usuario y petición de cantidad de productos
 alert(
@@ -180,5 +143,3 @@ chargeProducts(productsAmount);
 joinProducts(products);
 askForRegister();
 showSales();
-
-

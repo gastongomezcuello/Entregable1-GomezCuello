@@ -15,21 +15,28 @@ body {
   display: flex;
   flex-direction: column;
 }
-body header,
-body footer {
+
+header,
+footer {
   display: grid;
   background-color: #2a2208;
   color: #f3f3f3;
   text-align: center;
   padding: 13px;
 }
-body main {
+
+main {
   padding: 13px;
 }
-body .sidebar {
+main section {
+  height: 100vh;
+}
+
+.sidebar {
   display: none;
 }
-body .sidebar.sidebar-active {
+
+.sidebar.sidebar-active {
   display: block;
   position: absolute;
   top: 0;
