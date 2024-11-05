@@ -28,12 +28,14 @@ footer {
 main {
   padding: 13px;
 }
-main section {
-  height: 100vh;
-}
 
 .sidebar {
   display: none;
+}
+.sidebar a {
+  color: #f3f3f3;
+  text-decoration: none;
+  font-size: 2rem;
 }
 
 .sidebar.sidebar-active {
@@ -56,6 +58,10 @@ main section {
   color: #f3f3f3;
   font-size: 2rem;
   justify-self: end;
+}
+
+.p-m {
+  padding: 13px;
 }
 
 /*# sourceMappingURL=styles.css.map */

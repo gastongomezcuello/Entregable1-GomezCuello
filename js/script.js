@@ -1,23 +1,11 @@
 // Variables
-let products = [];
+
 let sales = [];
-let defaultProducts = [
-  {
-    name: "gorras",
-    price: 25,
-  },
-  {
-    name: "sombreros",
-    price: 30,
-  },
-  {
-    name: "camperas",
-    price: 50,
-  },
-  {
-    name: "remeras",
-    price: 20,
-  },
+let products = [
+  { id: 1, name: "gorras", price: 25 },
+  { id: 2, name: "sombreros", price: 30 },
+  { id: 3, name: "camperas", price: 50 },
+  { id: 4, name: "remeras", price: 20 },
 ];
 
 // Función para hacer mayúscula la primer letra de un string
@@ -36,39 +24,23 @@ function validPositiveNumber(amount) {
   }
 }
 
-// Función para registrar una venta
-function salesRegister(productName, saleAmount) {
-  let product = products.find((product) => product.name === productName);
-  let amount = validPositiveNumber(saleAmount);
-  let transactionValue;
+// Función para calcular valor total
 
-  if (product == undefined) {
-    return "El producto no se encuentra en la lista no me hackees la página";
-  } else if (typeof amount == "string") {
-    return amount;
-  } else {
-    transactionValue = product.price * amount;
-    sales.push({
-      productSold: product.name,
-      quantity: amount,
-      transactionValue: transactionValue,
-    });
-    return "Has registrado una venta";
-  }
+function totalSales(salesArray) {
+  let total = [];
+  salesArray.forEach((element) => {
+    total.push(element.transactionValue);
+  });
+  return total.reduce((a, b) => a + b, 0);
 }
 
 //Interactuando con el DOM
-
-// Función myOnClick
-
-function myOnClick(node, callback) {
-  node.addEventListener("click", callback);
-}
 
 //Capturando nodos
 
 let toggleButtonNode = document.getElementById("menu-toggle");
 let sidebarNode = document.querySelector(".sidebar");
+
 let resumeNode = document.getElementById("resume");
 let salesNode = document.getElementById("sales");
 let productsNode = document.getElementById("products");
@@ -81,6 +53,13 @@ let productsLinkNode = document.getElementById("products-link");
 let reportsLinkNode = document.getElementById("reports-link");
 let settingsLinkNode = document.getElementById("settings-link");
 
+let productSelectorNode = document.getElementById("product-selector");
+let quantityInputNode = document.getElementById("quantity-input");
+let addSale = document.getElementById("add-sale");
+
+let salesRegisterNode = document.getElementById("sales-register");
+let tableBody = document.getElementById("sales-table").querySelector("tbody");
+
 //Creando nodos
 
 let resumeContent = document.createElement("section");
@@ -88,6 +67,12 @@ let salesContent = document.createElement("section");
 let productsContent = document.createElement("section");
 let reportsContent = document.createElement("section");
 let settingsContent = document.createElement("section"); // esta quizas no se usa
+
+// Función myOnClick
+
+function myOnClick(node, callback) {
+  node.addEventListener("click", callback);
+}
 
 //Sidebar
 
@@ -115,31 +100,99 @@ function showSales() {
       "<h3>No tienes ventas registradas el día de hoy</h3>";
     resumeNode.appendChild(resumeContent);
     return;
-  }
-  resumeContent.innerHTML = `<h3>Hoy registraste ${sales.length} ventas</h3>`;
+  } else {
+    resumeContent.innerHTML = `<h3>Hoy registraste ${sales.length} ventas</h3>
+                               <h3>Monto total vendido:$${totalSales(sales)}`;
 
-  resumeNode.appendChild(resumeContent);
+    resumeNode.appendChild(resumeContent);
+  }
 }
 
 //Ventas
+// Función para mostrar los productos en el selector
+
+function productsSelector() {
+  products.forEach((element) => {
+    let options = document.createElement("option");
+    options.innerText = firstCharToUpperCase(element.name);
+    productSelectorNode.appendChild(options);
+  });
+}
+
+// Funcion tabla de ventas
+function newRow(sale) {
+  let row = document.createElement("tr");
+
+  let product = document.createElement("td");
+  product.innerText = sale.productSold;
+  row.appendChild(product);
+
+  let quantity = document.createElement("td");
+  quantity.innerText = sale.quantity;
+  row.appendChild(quantity);
+
+  let value = document.createElement("td");
+  value.innerText = sale.transactionValue;
+  row.appendChild(value);
+
+  let deleteColumn = document.createElement("td");
+  let deleteButton = document.createElement("button");
+  deleteButton.innerText = "Eliminar"; // la idea es poner un icono de tachito
+
+  deleteButton.onclick = () => {
+    sales = sales.filter((s) => s !== sale);
+    row.remove();
+    showSales();
+  };
+
+  deleteColumn.appendChild(deleteButton);
+  row.appendChild(deleteColumn);
+
+  tableBody.appendChild(row);
+}
+
+// Función para registrar una venta
+function salesRegister(productName, saleAmount) {
+  let product = products.find(
+    (product) => product.name === productName.toLowerCase()
+  );
+  let amount = validPositiveNumber(saleAmount);
+  let transactionValue;
+
+  if (product == undefined) {
+    return "El producto no se encuentra en la lista no me hackees la página";
+  } else if (typeof amount == "string") {
+    return amount;
+  } else {
+    transactionValue = product.price * amount;
+    let sale = {
+      productSold: product.name,
+      quantity: amount,
+      transactionValue: transactionValue,
+    };
+    sales.push(sale);
+    newRow(sale);
+    return "Has registrado una venta";
+  }
+}
+
+// onclick del botón de agregar venta
+addSale.onclick = () => {
+  let previousMessage = document.querySelector("h4");
+  if (previousMessage) {
+    previousMessage.remove();
+  }
+  let res = salesRegister(productSelectorNode.value, quantityInputNode.value);
+  let message = document.createElement("h4");
+  message.innerText = res;
+  salesRegisterNode.appendChild(message);
+  showSales();
+};
 
 //Productos
 
 //Reportes
 
-// resumeContent.innerHTML = `<h3>Ventas del día de hoy</h3>
-//                            <p>${sales.length}</p> `
-
-// Saludo al usuario y petición de cantidad de productos
-alert(
-  "Bienvenido al simulador de registro!\nAquí podrás cargar tus productos y registrar tus ventas de manera fácil y rápida."
-);
-productsAmount = validPositiveNumber(
-  "Comencemos!\nIngresá el número de productos que quieres cargar a tu lista"
-);
-
 // Llamadas a las funciones
-chargeProducts(productsAmount);
-joinProducts(products);
-askForRegister();
+productsSelector();
 showSales();

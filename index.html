@@ -13,7 +13,7 @@
       <h1>Dashboard</h1>
       <button id="menu-toggle">☰ Menú</button>
     </header>
-    <aside style="background-color: brown" class="sidebar">
+    <aside class="sidebar">
       <nav>
         <ul>
           <li><a id="resume-link" href="#resume">Resumen</a></li>
@@ -25,23 +25,45 @@
       </nav>
     </aside>
     <main>
-      <section id="resume">
+      <section class="p-m" id="resume">
         <h2>Resumen</h2>
         <p>Información general del negocio</p>
       </section>
-      <section id="sales">
+      <section class="p-m" id="sales">
         <h2>Ventas</h2>
-        <p>Registro de ventas</p>
+        <section id="sales-register">
+          <h3>Registro de ventas</h3>
+          <label for="product-selector">Producto:</label>
+          <select name="" id="product-selector"></select>
+          <label for="quantity-input">Cantidad:</label>
+          <input type="number" name="" id="quantity-input" />
+          <button id="add-sale">Agregar venta</button>
+        </section>
+
+        <section>
+          <h3>Historial de ventas</h3>
+          <table id="sales-table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Monto</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
       </section>
-      <section id="products">
+      <section class="p-m" id="products">
         <h2>Productos</h2>
         <p>Registro de productos</p>
       </section>
-      <section id="reports">
+      <section class="p-m" id="reports">
         <h2>Reportes</h2>
         <p>Reportes de ventas</p>
       </section>
-      <section id="settings">
+      <section class="p-m" id="settings">
         <h2>Configuración</h2>
         <p>Configuración de la aplicación</p>
       </section>

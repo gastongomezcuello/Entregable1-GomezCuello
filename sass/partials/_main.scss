@@ -25,13 +25,14 @@ footer {
 }
 main {
   padding: $padding-margin-lg;
-
-  section {
-    height: 100vh;
-  }
 }
 .sidebar {
   display: none;
+  a {
+    color: $ligth-color;
+    text-decoration: none;
+    font-size: $font-mobile-size-lg;
+  }
 }
 .sidebar.sidebar-active {
   display: block;
@@ -53,4 +54,8 @@ main {
   color: $ligth-color;
   font-size: $font-mobile-size-lg;
   justify-self: end;
+}
+
+.p-m {
+  padding: $padding-margin-lg;
 }
