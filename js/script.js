@@ -143,6 +143,8 @@ function newRow(sale) {
     sales = sales.filter((s) => s !== sale);
     row.remove();
     showSales();
+
+    localStorage.setItem("sales", JSON.stringify(sales));
   };
 
   deleteColumn.appendChild(deleteButton);
@@ -172,6 +174,8 @@ function salesRegister(productName, saleAmount) {
     };
     sales.push(sale);
     newRow(sale);
+
+    localStorage.setItem("sales", JSON.stringify(sales));
     return "Has registrado una venta";
   }
 }
@@ -193,6 +197,18 @@ addSale.onclick = () => {
 
 //Reportes
 
+//Acceder al local storage
+function loadSales() {
+  let salesStorage = localStorage.getItem("sales");
+  if (salesStorage) {
+    sales = JSON.parse(salesStorage);
+    sales.forEach((sale) => {
+      newRow(sale);
+    });
+  }
+}
+
 // Llamadas a las funciones
+loadSales();
 productsSelector();
 showSales();
