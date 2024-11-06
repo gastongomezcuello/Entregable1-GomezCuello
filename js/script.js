@@ -59,6 +59,7 @@ let addSale = document.getElementById("add-sale");
 
 let salesRegisterNode = document.getElementById("sales-register");
 let tableBody = document.getElementById("sales-table").querySelector("tbody");
+let clearSalesNode = document.getElementById("clear-sales");
 
 //Creando nodos
 
@@ -192,6 +193,16 @@ addSale.onclick = () => {
   salesRegisterNode.appendChild(message);
   showSales();
 };
+
+// Borrar local Storage
+
+function clearLocalStorage() {
+  localStorage.clear();
+  sales = [];
+  tableBody.innerHTML = "";
+  showSales();
+}
+clearSalesNode.onclick = clearLocalStorage;
 
 //Productos
 
