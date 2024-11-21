@@ -1,12 +1,6 @@
 // Variables
 
 let sales = [];
-let products = [
-  { id: 1, name: "gorras", price: 25 },
-  { id: 2, name: "sombreros", price: 30 },
-  { id: 3, name: "camperas", price: 50 },
-  { id: 4, name: "remeras", price: 20 },
-];
 
 // Función para hacer mayúscula la primer letra de un string
 function firstCharToUpperCase(str) {
@@ -27,11 +21,8 @@ function validPositiveNumber(amount) {
 // Función para calcular valor total
 
 function totalSales(salesArray) {
-  let total = [];
-  salesArray.forEach((element) => {
-    total.push(element.transactionValue);
-  });
-  return total.reduce((a, b) => a + b, 0);
+  
+  return salesArray.reduce((a, b) => a + b.transactionValue, 0);
 }
 
 //Interactuando con el DOM
@@ -112,10 +103,11 @@ function showSales() {
 //Ventas
 // Función para mostrar los productos en el selector
 
-function productsSelector() {
+async function productsSelector() {
+  let products = await getProducts();
   products.forEach((element) => {
     let options = document.createElement("option");
-    options.innerText = firstCharToUpperCase(element.name);
+    options.innerText = element.name;
     productSelectorNode.appendChild(options);
   });
 }
@@ -141,7 +133,7 @@ function newRow(sale) {
   deleteButton.innerText = "Eliminar"; // la idea es poner un icono de tachito
 
   deleteButton.onclick = () => {
-    sales = sales.filter((s) => s !== sale);
+    sales = sales.filter((saleToDel) => saleToDel !== sale);
     row.remove();
     showSales();
 
@@ -153,41 +145,56 @@ function newRow(sale) {
 
   tableBody.appendChild(row);
 }
+// Función para traer los productos
+async function getProducts() {
+  try  {
+    let res = await fetch("./db/products.json");
+    let data = await res.json();
+    return data;   
+  } catch (err) {
+    return (err)
+  }
+}
 
 // Función para registrar una venta
-function salesRegister(productName, saleAmount) {
-  let product = products.find(
-    (product) => product.name === productName.toLowerCase()
-  );
-  let amount = validPositiveNumber(saleAmount);
-  let transactionValue;
+async function salesRegister(productName, saleAmount) {
+  try {
+    let products = await getProducts()
+    let product = products.find(
+      (product) => product.name.toLowerCase() === productName.toLowerCase()
+    );
+    if (!product) {
+      return "El producto no se encuentra en la lista no me hackees la página";
+    }
+    let amount = validPositiveNumber(saleAmount);
+    if (typeof amount === "string") {
+      return amount;
+    }
+    let transactionValue = product.price * amount;
 
-  if (product == undefined) {
-    return "El producto no se encuentra en la lista no me hackees la página";
-  } else if (typeof amount == "string") {
-    return amount;
-  } else {
-    transactionValue = product.price * amount;
     let sale = {
       productSold: product.name,
       quantity: amount,
       transactionValue: transactionValue,
+      date: new Date().toLocaleDateString(),
     };
     sales.push(sale);
     newRow(sale);
 
     localStorage.setItem("sales", JSON.stringify(sales));
     return "Has registrado una venta";
-  }
+  } catch (err) {
+    return (err)
+    }
 }
 
 // onclick del botón de agregar venta
-addSale.onclick = () => {
+addSale.onclick = async () => {
   let previousMessage = document.querySelector("h4");
   if (previousMessage) {
     previousMessage.remove();
   }
-  let res = salesRegister(productSelectorNode.value, quantityInputNode.value);
+  let res = await salesRegister(productSelectorNode.value, quantityInputNode.value);
   let message = document.createElement("h4");
   message.innerText = res;
   salesRegisterNode.appendChild(message);

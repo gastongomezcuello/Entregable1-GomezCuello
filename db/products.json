@@ -1,0 +1,64 @@
+[
+    {
+      "id": 1,
+      "name": "Auriculares Bluetooth Xtreme",
+      "price": 80,
+      "description": "Auriculares inalámbricos de alta calidad con sonido envolvente y cancelación de ruido."
+    },
+    {
+      "id": 2,
+      "name": "Altavoz Portátil JBL Go 3",
+      "price": 50,
+      "description": "Altavoz compacto y resistente con sonido potente, ideal para llevar a todas partes."
+    },
+    {
+      "id": 3,
+      "name": "Audífonos Over-Ear Bose QuietComfort",
+      "price": 350,
+      "description": "Audífonos de diadema con cancelación de ruido activa y calidad de sonido superior."
+    },
+    {
+      "id": 4,
+      "name": "Teclado Gaming RGB HyperX",
+      "price": 110,
+      "description": "Teclado mecánico con retroiluminación RGB y teclas de alta durabilidad, ideal para gamers."
+    },
+    {
+      "id": 5,
+      "name": "Mouse Gaming Razer DeathAdder V2",
+      "price": 80,
+      "description": "Mouse ergonómico con alta precisión y diseño cómodo para largas sesiones de juego."
+    },
+    {
+      "id": 6,
+      "name": "Soundbar Sony 2.1",
+      "price": 150,
+      "description": "Barra de sonido con subwoofer integrado para una experiencia de audio de cine en casa."
+    },
+    {
+      "id": 7,
+      "name": "Auriculares Inalámbricos Sony WH-1000XM5",
+      "price": 400,
+      "description": "Auriculares de alta gama con cancelación de ruido y sonido Hi-Res, perfectos para viajes."
+    },
+    {
+      "id": 8,
+      "name": "Micrófono USB Blue Yeti",
+      "price": 130,
+      "description": "Micrófono de condensador USB de calidad profesional, ideal para grabaciones y streaming."
+    },
+    {
+      "id": 9,
+      "name": "Adaptador de Audio Bluetooth TP-Link",
+      "price": 30,
+      "description": "Adaptador compacto que convierte tu dispositivo en inalámbrico para escuchar música por Bluetooth."
+    },
+    {
+      "id": 10,
+      "name": "Cargador Inalámbrico Samsung Fast Charge",
+      "price": 40,
+      "description": "Cargador inalámbrico rápido para cargar dispositivos Samsung de forma eficiente y sin cables."
+    }
+  ]
+  
+  
