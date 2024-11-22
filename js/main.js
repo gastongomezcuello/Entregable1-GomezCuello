@@ -46,6 +46,7 @@ let settingsLinkNode = document.getElementById("settings-link");
 
 let productSelectorNode = document.getElementById("product-selector");
 let quantityInputNode = document.getElementById("quantity-input");
+let dateInputNode = document.getElementById("date-input");
 let addSale = document.getElementById("add-sale");
 
 let salesRegisterNode = document.getElementById("sales-register");
@@ -157,7 +158,7 @@ async function getProducts() {
 }
 
 // Función para registrar una venta
-async function salesRegister(productName, saleAmount) {
+async function salesRegister(productName, saleAmount, date) {
   try {
     let products = await getProducts()
     let product = products.find(
@@ -170,14 +171,18 @@ async function salesRegister(productName, saleAmount) {
     if (typeof amount === "string") {
       return amount;
     }
+    if (date === "" || date === null) {
+      return "Por favor, ingresá una fecha válida";
+    }
     let transactionValue = product.price * amount;
 
     let sale = {
       productSold: product.name,
       quantity: amount,
       transactionValue: transactionValue,
-      date: new Date().toLocaleDateString(),
+      date: new Date(date).toLocaleDateString(),
     };
+    console.log(sales)
     sales.push(sale);
     newRow(sale);
 
@@ -194,7 +199,7 @@ addSale.onclick = async () => {
   if (previousMessage) {
     previousMessage.remove();
   }
-  let res = await salesRegister(productSelectorNode.value, quantityInputNode.value);
+  let res = await salesRegister(productSelectorNode.value, quantityInputNode.value, dateInputNode.value);
   let message = document.createElement("h4");
   message.innerText = res;
   salesRegisterNode.appendChild(message);
@@ -213,7 +218,13 @@ clearSalesNode.onclick = clearLocalStorage;
 
 //Productos
 
-//Reportes
+function showProducts() {
+  productsContent.innerHTML = "<h3>Productos</h3>";
+  productsNode.appendChild(productsContent);
+
+}
+
+//Reportes (data procesada, resumenes semanales, mensuales, anuales, etc  )
 
 //Acceder al local storage
 function loadSales() {
@@ -230,3 +241,4 @@ function loadSales() {
 loadSales();
 productsSelector();
 showSales();
+showProducts();
