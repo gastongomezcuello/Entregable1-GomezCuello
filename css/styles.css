@@ -106,7 +106,7 @@ main {
 
 .main-section {
   flex: 0 0 auto;
-  height: 100%;
+  height: calc(100vh - 14rem - 5rem);
   width: 100%;
   scroll-snap-align: start;
 }
