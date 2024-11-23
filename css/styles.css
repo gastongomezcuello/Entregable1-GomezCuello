@@ -35,7 +35,6 @@ label {
 
 body {
   height: 100vh;
-  overflow: visible;
 }
 
 header {
@@ -64,8 +63,9 @@ main {
   display: flex;
   flex-direction: column;
   position: relative;
-  margin-top: 14rem;
-  margin-bottom: 5rem;
+  width: 100%;
+  top: 14rem;
+  bottom: 5rem;
   scroll-snap-type: y mandatory;
   overflow-y: auto;
   height: calc(100vh - 14rem - 5rem);
@@ -73,6 +73,15 @@ main {
 
 .sidebar {
   display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70%;
+  height: 100%;
+  background-color: #2a2208;
+  color: #f3f3f3;
+  padding: 1rem;
+  z-index: 200;
 }
 .sidebar a {
   color: #f3f3f3;
@@ -82,15 +91,6 @@ main {
 
 .sidebar.sidebar-active {
   display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 70%;
-  height: 100%;
-  background-color: #2a2208;
-  color: #f3f3f3;
-  padding: 1rem;
-  z-index: 10;
 }
 
 #menu-toggle {
