@@ -30,7 +30,7 @@ label {
 
 body {
   height: 100vh;
-  overflow: hidden;
+  overflow: visible;
 }
 header {
   top: 0;
@@ -45,6 +45,7 @@ footer {
   color: $ligth-color;
   text-align: center;
   padding: $padding-margin-lg;
+  z-index: 100;
 }
 footer {
   bottom: 0;
@@ -55,7 +56,8 @@ main {
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 14rem;
+  margin-top: 14rem;
+  margin-bottom: 5rem;
   scroll-snap-type: y mandatory;
   overflow-y: auto;
   height: calc(100vh - 14rem - 5rem);
@@ -99,6 +101,7 @@ main {
   height: 100%;
   width: 100%;
   scroll-snap-align: start;
+  scroll-margin-top: 14rem;
 }
 
 #products {
