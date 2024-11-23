@@ -105,6 +105,7 @@ main {
 }
 
 .main-section {
+  flex: 0 0 auto;
   height: 100%;
   width: 100%;
   scroll-snap-align: start;
@@ -115,6 +116,9 @@ main {
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 13px;
   padding: 13px;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
