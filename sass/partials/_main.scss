@@ -99,3 +99,10 @@ main {
   scroll-snap-align: start;
   overflow-y: unset;
 }
+
+#pruducts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: $padding-margin-lg;
+  padding: $padding-margin-lg;
+}
