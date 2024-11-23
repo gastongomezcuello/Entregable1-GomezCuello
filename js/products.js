@@ -23,21 +23,21 @@ async function productsSelector() {
 
 // Mostrar los productos
 
-// async function showProducts() {
-//   let products = await getProducts();
-//   products.forEach((element) => {
-//     let div = document.createElement("div");
-//     div.className = "product";
-//     div.innerHTML = `
-//     <div class="product-info">
-//       <h3>${element.name}</h3>
-//       <p>${element.description}</p>
-//       <p>$${element.price}</p>
-//     </div>
-//     `;
-//     productsNode.appendChild(div);
-//   });
-// }
+async function showProducts() {
+  let products = await getProducts();
+  products.forEach((element) => {
+    let div = document.createElement("div");
+    div.className = "product";
+    div.innerHTML = `
+    <div class="product-info">
+      <h3>${element.name}</h3>
+      <p>${element.description}</p>
+      <p>$${element.price}</p>
+    </div>
+    `;
+    productsNode.appendChild(div);
+  });
+}
 
 // Nodos
 

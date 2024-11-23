@@ -62,10 +62,8 @@ footer {
 main {
   display: flex;
   flex-direction: column;
-  position: relative;
   width: 100%;
-  top: 14rem;
-  bottom: 5rem;
+  margin-top: 14rem;
   scroll-snap-type: y mandatory;
   overflow-y: auto;
   height: calc(100vh - 14rem - 5rem);
@@ -111,7 +109,6 @@ main {
   height: 100%;
   width: 100%;
   scroll-snap-align: start;
-  scroll-margin-top: 14rem;
 }
 
 #products {
