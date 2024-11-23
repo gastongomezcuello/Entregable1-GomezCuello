@@ -35,7 +35,6 @@ label {
 
 body {
   min-height: 100vh;
-  overflow: hidden;
 }
 
 header {
@@ -54,9 +53,10 @@ footer {
 }
 
 footer {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   height: 5rem;
+  width: 100%;
 }
 
 main {
@@ -129,11 +129,24 @@ main {
   }
 }
 @media (min-width: 1024px) {
-  .sidebar {
+  main {
+    width: 80%;
+    right: 0;
+    position: fixed;
+  }
+  .sidebar,
+  .sidebar.sidebar-active {
     display: block;
+    position: fixed;
+    top: 14rem;
+    left: 0;
+    padding: 1rem;
+    height: calc(100vh - 14rem - 5rem);
+    width: 20%;
     background-color: #116c9a;
   }
-  .sidebar a {
+  .sidebar a,
+  .sidebar.sidebar-active a {
     font-size: 2rem;
   }
   #menu-toggle {

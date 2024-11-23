@@ -30,8 +30,6 @@ label {
 
 body {
   min-height: 100vh;
-
-  overflow: hidden;
 }
 header {
   position: sticky;
@@ -47,9 +45,10 @@ footer {
   padding: $padding-margin-lg;
 }
 footer {
-  position: sticky;
+  position: fixed;
   bottom: 0;
   height: 5rem;
+  width: 100%;
 }
 
 main {

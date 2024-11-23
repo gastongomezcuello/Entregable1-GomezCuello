@@ -19,8 +19,20 @@
 }
 
 @media (min-width: 1024px) {
-  .sidebar {
+  main {
+    width: 80%;
+    right: 0;
+    position: fixed;
+  }
+  .sidebar,
+  .sidebar.sidebar-active {
     display: block;
+    position: fixed;
+    top: 14rem;
+    left: 0;
+    padding: 1rem;
+    height: calc(100vh - 14rem - 5rem);
+    width: 20%;
     background-color: $primary-color;
     a {
       font-size: $font-tablet-size-lg;
