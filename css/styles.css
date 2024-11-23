@@ -66,6 +66,7 @@ main {
   top: 14rem;
   display: flex;
   flex-direction: column;
+  scroll-padding: 14rem 0 5rem 0;
   scroll-snap-type: y mandatory;
   overflow-y: auto;
   height: calc(100vh - 14rem - 5rem);
@@ -110,7 +111,6 @@ main {
   flex-shrink: 0;
   height: 100%;
   scroll-snap-align: start;
-  overflow-y: hidden;
 }
 
 @media (min-width: 768px) {
