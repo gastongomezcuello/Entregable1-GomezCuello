@@ -52,7 +52,6 @@ footer {
 }
 
 main {
-  display: flex;
   position: relative;
   top: 14rem;
   scroll-snap-type: y mandatory;
@@ -94,7 +93,6 @@ main {
 }
 
 .main-section {
-  flex-shrink: 0;
   height: 100%;
   width: 100%;
   scroll-snap-align: start;
