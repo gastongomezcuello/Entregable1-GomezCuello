@@ -107,7 +107,7 @@ main {
   height: 100%;
   width: 100%;
   scroll-snap-align: start;
-  overflow: hidden;
+  overflow-y: unset;
 }
 
 @media (min-width: 768px) {
