@@ -52,6 +52,7 @@ footer {
 }
 
 main {
+  display: flex;
   position: relative;
   top: 14rem;
   scroll-snap-type: y mandatory;
