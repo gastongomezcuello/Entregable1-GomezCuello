@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/styles.css" />
+    <script defer src="./js/products.js"></script>
+    <script defer src="./js/sales.js"></script>
+    <script defer src="./js/reports.js"></script>
     <script defer src="./js/main.js"></script>
     <title>Simulador Comercial</title>
   </head>
@@ -12,12 +15,8 @@
     <header>
       <h1>Simulador Comercial de Ventas</h1>
       <p>
-        es una aplicación interactiva para gestionar ventas de productos.
-        Permite registrar ventas de productos, visualizar un historial de
-        ventas, calcular el monto total vendido y gestionar productos con
-        facilidad. Los usuarios pueden añadir ventas mediante un selector de
-        productos y una cantidad, mientras que el sistema guarda automáticamente
-        los registros para mostrar un resumen actualizado.
+        Aplicación interactiva para registrar y gestionar ventas, con historial,
+        total vendido y resumen actualizado.
       </p>
       <button id="menu-toggle">☰ Menú</button>
     </header>
@@ -28,15 +27,14 @@
           <li><a id="sales-link" href="#sales">Ventas</a></li>
           <li><a id="products-link" href="#products">Productos</a></li>
           <li><a id="reports-link" href="#reports">Reportes</a></li>
-          <li><a id="settings-link" href="#settings">Configuración</a></li>
         </ul>
       </nav>
     </aside>
     <main>
-      <section class="p-m" id="resume">
+      <section class="p-m main-section" id="resume">
         <h2>Resumen</h2>
       </section>
-      <section class="p-m" id="sales">
+      <section class="p-m main-section" id="sales">
         <h2>Ventas</h2>
         <section id="sales-register">
           <h3>Registro de ventas</h3>
@@ -65,22 +63,20 @@
           <button id="clear-sales">Borrar ventas</button>
         </section>
       </section>
-      <section class="p-m" id="products">
+      <section class="p-m main-section" id="products">
         <h2>Productos</h2>
         <p>Registro de productos</p>
       </section>
-      <section class="p-m" id="reports">
+      <section class="p-m main-section" id="reports">
         <h2>Reportes</h2>
         <p>Reportes de ventas</p>
       </section>
-      <section class="p-m" id="settings">
-        <h2>Configuración</h2>
-        <p>Configuración de la aplicación</p>
-      </section>
     </main>
     <footer>
-      © 2024 Dashboard de Ventas.<br />
-      Todos los derechos reservados.
+      <p>
+        © 2024 Dashboard de Ventas.<br />
+        Todos los derechos reservados.
+      </p>
     </footer>
   </body>
 </html>

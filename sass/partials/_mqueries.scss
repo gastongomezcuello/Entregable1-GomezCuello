@@ -1,0 +1,36 @@
+@media (min-width: 768px) {
+  h1 {
+    font-size: $font-tablet-size-xxl;
+  }
+  h2 {
+    font-size: $font-tablet-size-xl;
+  }
+  h3 {
+    font-size: $font-tablet-size-lg;
+  }
+  h4 {
+    font-size: $font-tablet-size-md;
+  }
+  p,
+  tr,
+  label {
+    font-size: $font-tablet-size-sm;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    display: block;
+    background-color: $primary-color;
+    a {
+      font-size: $font-tablet-size-lg;
+    }
+  }
+
+  #menu-toggle {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+}

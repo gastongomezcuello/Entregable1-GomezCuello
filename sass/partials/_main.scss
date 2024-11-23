@@ -5,11 +5,38 @@
   padding: 0;
   margin: 0;
 }
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: $font-mobile-size-xxl;
+}
+h2 {
+  font-size: $font-mobile-size-xl;
+}
+h3 {
+  font-size: $font-mobile-size-lg;
+}
+h4 {
+  font-size: $font-mobile-size-md;
+}
+p,
+tr,
+label {
+  font-size: $font-mobile-size-sm;
+}
 
 body {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+
+  overflow: hidden;
+}
+header {
+  position: sticky;
+  top: 0;
+  height: 14rem;
 }
 header,
 footer {
@@ -19,8 +46,19 @@ footer {
   text-align: center;
   padding: $padding-margin-lg;
 }
+footer {
+  position: sticky;
+  bottom: 0;
+  height: 5rem;
+}
+
 main {
-  padding: $padding-margin-lg;
+  display: flex;
+  flex-direction: column;
+
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  height: calc(100vh - 14rem - 5rem);
 }
 .sidebar {
   display: none;
@@ -32,13 +70,13 @@ main {
 }
 .sidebar.sidebar-active {
   display: block;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 70%; /* Puedes ajustar el ancho */
+  width: 70%;
   height: 100%;
-  background-color: #444;
-  color: #fff;
+  background-color: $dark-color;
+  color: $ligth-color;
   padding: 1rem;
   z-index: 10;
 }
@@ -54,4 +92,11 @@ main {
 
 .p-m {
   padding: $padding-margin-lg;
+}
+
+.main-section {
+  flex-shrink: 0;
+  height: calc(100vh - 14rem - 5rem);
+  scroll-snap-align: start;
+  overflow-y: auto;
 }

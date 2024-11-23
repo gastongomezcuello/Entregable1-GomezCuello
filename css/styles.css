@@ -6,10 +6,42 @@
   margin: 0;
 }
 
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 2rem;
+}
+
+h4 {
+  font-size: 1.6rem;
+}
+
+p,
+tr,
+label {
+  font-size: 1.3rem;
+}
+
 body {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  height: 14rem;
 }
 
 header,
@@ -21,8 +53,18 @@ footer {
   padding: 13px;
 }
 
+footer {
+  position: sticky;
+  bottom: 0;
+  height: 5rem;
+}
+
 main {
-  padding: 13px;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  height: calc(100vh - 14rem - 5rem);
 }
 
 .sidebar {
@@ -36,13 +78,13 @@ main {
 
 .sidebar.sidebar-active {
   display: block;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-  width: 70%; /* Puedes ajustar el ancho */
+  width: 70%;
   height: 100%;
-  background-color: #444;
-  color: #fff;
+  background-color: #2a2208;
+  color: #f3f3f3;
   padding: 1rem;
   z-index: 10;
 }
@@ -58,6 +100,45 @@ main {
 
 .p-m {
   padding: 13px;
+}
+
+.main-section {
+  flex-shrink: 0;
+  height: calc(100vh - 14rem - 5rem);
+  scroll-snap-align: start;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 5rem;
+  }
+  h2 {
+    font-size: 3rem;
+  }
+  h3 {
+    font-size: 2rem;
+  }
+  h4 {
+    font-size: 1.6rem;
+  }
+  p,
+  tr,
+  label {
+    font-size: 1.3rem;
+  }
+}
+@media (min-width: 1024px) {
+  .sidebar {
+    display: block;
+    background-color: #116c9a;
+  }
+  .sidebar a {
+    font-size: 2rem;
+  }
+  #menu-toggle {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
