@@ -116,6 +116,7 @@ main {
 }
 
 header {
+  all: unset;
   position: fixed;
   top: 0;
   width: 100%;
@@ -128,6 +129,7 @@ header {
 }
 
 footer {
+  all: unset;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -139,6 +141,7 @@ footer {
 }
 
 main {
+  all: unset;
   position: relative;
   top: 14rem;
   height: calc(100vh - 14rem - 5rem);
@@ -148,6 +151,7 @@ main {
 }
 
 .main-section {
+  all: unset;
   flex-shrink: 0;
   height: calc(100vh - 14rem - 5rem);
   scroll-snap-align: start;
