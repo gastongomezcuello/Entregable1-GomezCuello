@@ -18,7 +18,7 @@ function totalSales(salesArray) {
 
 // Mostrar resumen de ventas
 
-function showSales() {
+function showSales(sales) {
   if (sales.length === 0) {
     resumeContent.innerHTML =
       "<h3>No tenés ventas registradas</h3>";
@@ -34,6 +34,26 @@ function showSales() {
   resumeNode.appendChild(resumeContent);
 }
 
+// Reportes: semanal, mensual, anual
+
+function showReports (sales) {
+  if (sales.length === 0) {
+    reportsContent.innerHTML = 
+      "No tenés ventas registradas";
+    reportsNode.appendChild(reportsContent);
+    return;
+  }
+
+  reportsContent.innerHTML = `
+    <h3>Reportes de ventas</h3>
+    <p>Ventas registradas: ${sales.length}</p>
+    <p>Monto total: $${totalSales(sales)}</p>
+  `; // Cambiar por reportes, semanales, mensuales, anuales
+  reportsNode.appendChild(reportsContent);
+
+}
+
 // Nodos
 
 let resumeContent = document.createElement("section");
+let reportsContent = document.createElement("section")

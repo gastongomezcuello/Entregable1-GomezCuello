@@ -42,5 +42,5 @@ myOnClick(reportsLinkNode, sidebarActive);
 // Llamadas a las funciones
 loadSales();
 productsSelector();
-showSales();
+showSales(sales);
 showProducts();

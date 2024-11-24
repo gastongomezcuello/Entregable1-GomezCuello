@@ -74,7 +74,8 @@ function newRow(sale) {
   deleteButton.onclick = () => {
     sales = sales.filter((saleToDel) => saleToDel !== sale);
     row.remove();
-    showSales();
+    showSales(sales);
+    showReports(sales)
 
     localStorage.setItem("sales", JSON.stringify(sales));
   };
