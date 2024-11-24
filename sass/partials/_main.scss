@@ -32,7 +32,7 @@ label {
 
 header {
   top: 0;
-  height: 14rem;
+  height: 16rem;
 }
 header,
 footer {
@@ -54,10 +54,11 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 14rem;
+  margin-top: 16rem;
   scroll-snap-type: y mandatory;
+  -webkit-scroll-snap-type: y mandatory;
   overflow-y: auto;
-  height: calc(100vh - 14rem - 5rem);
+  height: calc(100vh - 16rem - 5rem);
 }
 .sidebar {
   display: none;
@@ -95,7 +96,7 @@ main {
 
 .main-section {
   flex: 0 0 auto;
-  height: calc(100vh - 14rem - 5rem);
+  height: calc(100vh - 16rem - 5rem);
   width: 100%;
   scroll-snap-align: start;
   

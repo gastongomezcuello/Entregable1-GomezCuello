@@ -39,7 +39,7 @@ label {
 
 header {
   top: 0;
-  height: 14rem;
+  height: 16rem;
 }
 
 header,
@@ -63,10 +63,11 @@ main {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 14rem;
+  margin-top: 16rem;
   scroll-snap-type: y mandatory;
+  -webkit-scroll-snap-type: y mandatory;
   overflow-y: auto;
-  height: calc(100vh - 14rem - 5rem);
+  height: calc(100vh - 16rem - 5rem);
 }
 
 .sidebar {
@@ -106,7 +107,7 @@ main {
 
 .main-section {
   flex: 0 0 auto;
-  height: calc(100vh - 14rem - 5rem);
+  height: calc(100vh - 16rem - 5rem);
   width: 100%;
   scroll-snap-align: start;
 }
@@ -150,10 +151,10 @@ main {
   .sidebar.sidebar-active {
     display: block;
     position: fixed;
-    top: 14rem;
+    top: 16rem;
     left: 0;
     padding: 1rem;
-    height: calc(100vh - 14rem - 5rem);
+    height: calc(100vh - 16rem - 5rem);
     width: 20%;
     background-color: #116c9a;
   }
