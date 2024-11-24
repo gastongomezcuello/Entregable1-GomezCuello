@@ -21,7 +21,7 @@ function totalSales(salesArray) {
 function showSales() {
   if (sales.length === 0) {
     resumeContent.innerHTML =
-      "<h3>No tienes ventas registradas el día de hoy</h3>";
+      "<h3>No tenés ventas registradas</h3>";
     resumeNode.appendChild(resumeContent);
     return;
   }

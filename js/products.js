@@ -25,18 +25,22 @@ async function productsSelector() {
 
 async function showProducts() {
   let products = await getProducts();
+  let gridProductsContainer = document.createElement("section")
+  gridProductsContainer.className = "grid-container"
   products.forEach((element) => {
     let div = document.createElement("div");
     div.className = "product";
     div.innerHTML = `
     <div class="product-info">
-      <h3>${element.name}</h3>
+      <h4>${element.name}</h4>
       <p>${element.description}</p>
-      <p>$${element.price}</p>
+      <p>Precio sugerido: $${element.price}</p>
     </div>
     `;
-    productsNode.appendChild(div);
+    gridProductsContainer.appendChild(div);
   });
+  productsNode.appendChild(gridProductsContainer)
+
 }
 
 // Nodos
