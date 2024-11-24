@@ -28,10 +28,10 @@
   .sidebar.sidebar-active {
     display: block;
     position: fixed;
-    top: 16rem;
+    top: 20vh;
     left: 0;
     padding: 1rem;
-    height: calc(100vh - 16rem - 5rem);
+    height: 70vh;
     width: 20%;
     background-color: $primary-color;
     a {
