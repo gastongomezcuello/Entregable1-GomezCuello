@@ -65,7 +65,6 @@ main {
   width: 100%;
   margin-top: 14rem;
   scroll-snap-type: y mandatory;
-  -webkit-scroll-snap-type: y mandatory;
   overflow-y: auto;
   height: calc(100vh - 14rem - 5rem);
 }
@@ -110,7 +109,6 @@ main {
   height: calc(100vh - 14rem - 5rem);
   width: 100%;
   scroll-snap-align: start;
-  scroll-margin-top: 14rem;
 }
 
 #products {
@@ -119,8 +117,8 @@ main {
   gap: 13px;
   padding: 13px;
   width: 100%;
-  height: auto;
-  overflow: hidden;
+  height: 100%;
+  overflow: auto;
 }
 
 @media (min-width: 768px) {
