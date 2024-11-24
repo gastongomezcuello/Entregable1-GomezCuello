@@ -125,7 +125,8 @@ addSale.onclick = async () => {
   let message = document.createElement("h4");
   message.innerText = res;
   salesRegisterNode.appendChild(message);
-  showSales();
+  showSales(sales);
+  showReports(sales);
 };
 
 clearSalesNode.onclick = clearLocalStorage;
