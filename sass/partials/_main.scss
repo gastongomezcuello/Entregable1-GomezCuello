@@ -11,6 +11,7 @@ html {
 }
 body {
   overflow-y: hidden;
+  -webkit-overflow-y: hidden;
 }
 h1 {
   font-size: $font-mobile-size-xxl;
@@ -58,6 +59,7 @@ main {
   scroll-snap-type: y mandatory;
   -webkit-scroll-snap-type: y mandatory;
   overflow-y: auto;
+  -webkit-overflow-y: auto;
   height: calc(100vh - 16rem - 5rem);
 }
 .sidebar {
@@ -99,6 +101,8 @@ main {
   height: calc(100vh - 16rem - 5rem);
   width: 100%;
   scroll-snap-align: start;
+  -webkit-scroll-snap-align: start;
+
   
 }
 

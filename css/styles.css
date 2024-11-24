@@ -13,6 +13,7 @@ html {
 
 body {
   overflow-y: hidden;
+  -webkit-overflow-y: hidden;
 }
 
 h1 {
@@ -67,6 +68,7 @@ main {
   scroll-snap-type: y mandatory;
   -webkit-scroll-snap-type: y mandatory;
   overflow-y: auto;
+  -webkit-overflow-y: auto;
   height: calc(100vh - 16rem - 5rem);
 }
 
@@ -110,6 +112,7 @@ main {
   height: calc(100vh - 16rem - 5rem);
   width: 100%;
   scroll-snap-align: start;
+  -webkit-scroll-snap-align: start;
 }
 
 #products {
@@ -124,7 +127,7 @@ main {
 
 @media (min-width: 768px) {
   h1 {
-    font-size: 5rem;
+    font-size: 4rem;
   }
   h2 {
     font-size: 3rem;
