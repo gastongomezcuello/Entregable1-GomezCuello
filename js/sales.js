@@ -74,8 +74,8 @@ function newRow(sale) {
   deleteButton.onclick = () => {
     sales = sales.filter((saleToDel) => saleToDel !== sale);
     row.remove();
-    showSales(sales);
-    showReports(sales)
+    showSales();
+    showReports()
 
     localStorage.setItem("sales", JSON.stringify(sales));
   };
@@ -125,8 +125,8 @@ addSale.onclick = async () => {
   let message = document.createElement("h4");
   message.innerText = res;
   salesRegisterNode.appendChild(message);
-  showSales(sales);
-  showReports(sales);
+  showSales();
+  showReports();
 };
 
 clearSalesNode.onclick = clearLocalStorage;

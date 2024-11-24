@@ -18,7 +18,7 @@ function totalSales(salesArray) {
 
 // Mostrar resumen de ventas
 
-function showSales(sales) {
+function showSales() {
   if (sales.length === 0) {
     resumeContent.innerHTML =
       "<h3>No tenés ventas registradas</h3>";
@@ -36,7 +36,7 @@ function showSales(sales) {
 
 // Reportes: semanal, mensual, anual
 
-function showReports (sales) {
+function showReports () {
   if (sales.length === 0) {
     reportsContent.innerHTML = 
       "No tenés ventas registradas";
