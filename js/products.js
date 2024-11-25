@@ -25,8 +25,8 @@ async function productsSelector() {
 
 async function showProducts() {
   let products = await getProducts();
-  let gridProductsContainer = document.createElement("section")
-  gridProductsContainer.className = "grid-container"
+  let gridProductsContainer = document.createElement("section");
+  gridProductsContainer.className = "grid-container";
   products.forEach((element) => {
     let div = document.createElement("div");
     div.className = "product";
@@ -39,8 +39,7 @@ async function showProducts() {
     `;
     gridProductsContainer.appendChild(div);
   });
-  productsNode.appendChild(gridProductsContainer)
-
+  productsNode.appendChild(gridProductsContainer);
 }
 
 // Nodos

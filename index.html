@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/styles.css" />
+
+    <script defer src="https://cdn.jsdelivr.net/npm/dayjs"></script>
     <script defer src="./js/products.js"></script>
     <script defer src="./js/sales.js"></script>
     <script defer src="./js/reports.js"></script>
@@ -32,12 +34,11 @@
     </aside>
     <main>
       <section class="main-section" id="resume">
-        <h2>Resumen</h2>
+        <h2>Resumen de Ventas</h2>
       </section>
       <section class="main-section" id="sales">
-        <h2>Ventas</h2>
+        <h2>Registro de Ventas</h2>
         <section id="sales-register">
-          <h3>Registro de ventas</h3>
           <label for="product-selector">Producto:</label>
           <select name="" id="product-selector"></select>
           <label for="quantity-input">Cantidad:</label>
@@ -46,7 +47,6 @@
           <input type="date" name="" id="date-input" />
           <button id="add-sale">Agregar venta</button>
         </section>
-
         <section>
           <h3>Historial de ventas</h3>
           <table id="sales-table">
@@ -64,10 +64,10 @@
         </section>
       </section>
       <section class="main-section" id="products">
-        <h2>Productos</h2>
+        <h2>Listado de Productos</h2>
       </section>
       <section class="main-section" id="reports">
-        <h2>Reportes</h2>
+        <h2>Reportes de Ventas</h2>
       </section>
     </main>
     <footer>

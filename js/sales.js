@@ -37,7 +37,7 @@ async function salesRegister(productName, saleAmount, date) {
       productSold: product.name,
       quantity: amount,
       transactionValue: transactionValue,
-      date: new Date(date).toLocaleDateString(),
+      date: dayjs(date).toISOString(),
     };
 
     sales.push(sale);
@@ -75,7 +75,7 @@ function newRow(sale) {
     sales = sales.filter((saleToDel) => saleToDel !== sale);
     row.remove();
     showSales();
-    showReports()
+    showReports();
 
     localStorage.setItem("sales", JSON.stringify(sales));
   };

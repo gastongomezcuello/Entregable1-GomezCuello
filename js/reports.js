@@ -20,14 +20,12 @@ function totalSales(salesArray) {
 
 function showSales() {
   if (sales.length === 0) {
-    resumeContent.innerHTML =
-      "<h3>No tenés ventas registradas</h3>";
+    resumeContent.innerHTML = "<h3>No tenés ventas registradas</h3>";
     resumeNode.appendChild(resumeContent);
     return;
   }
 
   resumeContent.innerHTML = `
-    <h3>Resumen de ventas</h3>
     <p>Ventas registradas: ${sales.length}</p>
     <p>Monto total: $${totalSales(sales)}</p>
   `;
@@ -36,24 +34,33 @@ function showSales() {
 
 // Reportes: semanal, mensual, anual
 
-function showReports () {
+function showReports() {
   if (sales.length === 0) {
-    reportsContent.innerHTML = 
-      "No tenés ventas registradas";
+    reportsContent.innerHTML = "<h3>No tenés ventas registradas</h3>";
     reportsNode.appendChild(reportsContent);
     return;
   }
+  console.log(sales);
+
+  let lastWeek = dayjs().subtract(7, "day");
+  let lastMonth = dayjs().subtract(1, "month");
+  let lastYear = dayjs().subtract(1, "year");
 
   reportsContent.innerHTML = `
-    <h3>Reportes de ventas</h3>
-    <p>Ventas registradas: ${sales.length}</p>
-    <p>Monto total: $${totalSales(sales)}</p>
-  `; // Cambiar por reportes, semanales, mensuales, anuales
+    <p>Ventas de la última semana: $${totalSales(
+      sales.filter((sale) => dayjs(sale.date).isAfter(lastWeek))
+    )}</p>
+    <p>Ventas del último mes: $${totalSales(
+      sales.filter((sale) => dayjs(sale.date).isAfter(lastMonth))
+    )}</p>
+    <p>Ventas del último año: $${totalSales(
+      sales.filter((sale) => dayjs(sale.date).isAfter(lastYear))
+    )}</p>
+  `;
   reportsNode.appendChild(reportsContent);
-
 }
 
 // Nodos
 
 let resumeContent = document.createElement("section");
-let reportsContent = document.createElement("section")
+let reportsContent = document.createElement("section");
