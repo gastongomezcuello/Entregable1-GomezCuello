@@ -16,7 +16,8 @@
   label {
     font-size: $font-tablet-size-sm;
   }
-  .grid-container {
+  .products-container,
+  .reports-container {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -45,13 +46,13 @@
   #menu-toggle {
     display: none;
   }
-  .grid-container {
+  .products-container {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (min-width: 1440px) {
-  .grid-container {
+  .products-container {
     grid-template-columns: repeat(5, 1fr);
   }
 }
