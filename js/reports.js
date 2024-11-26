@@ -1,4 +1,7 @@
 dayjs.locale("es");
+// Graficos
+
+let charts = {};
 
 // Cargar ventas del localStorage
 
@@ -25,20 +28,95 @@ function monthlySales(salesArray) {
   return salesArray.filter((sale) => dayjs(sale.date).isAfter(lastMonth));
 }
 
-// Producto más vendido del mes
+// Cantidades de productos vendidos
 
-function mostSoldProduct(salesArray) {
-  let monthSales = monthlySales(salesArray);
-
+function productQuantities(salesArray) {
   let quantities = {};
 
-  monthSales.forEach((sale) => {
+  salesArray.forEach((sale) => {
     if (quantities[sale.productSold]) {
       quantities[sale.productSold] += sale.quantity;
     } else {
       quantities[sale.productSold] = sale.quantity;
     }
   });
+
+  return quantities;
+}
+
+// Gráfico de ventas
+
+function salesChart(chartID, productQties) {
+  let canvas = document.getElementById(`${chartID}-chart`);
+  if (!canvas) {
+    canvas = document.createElement("canvas");
+    canvas.id = `${chartID}-chart`;
+  }
+
+  let ctx = canvas.getContext("2d");
+
+  let labels = Object.keys(productQties);
+  let data = Object.values(productQties);
+
+  if (charts[chartID]) {
+    charts[chartID].data.labels = labels;
+    charts[chartID].data.datasets[0].data = data;
+    charts[chartID].update();
+  } else {
+    charts[chartID] = new Chart(ctx, {
+      type: "pie",
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: "Unidades vendidas",
+            data: data,
+            backgroundColor: [
+              "rgba(255, 99, 132, 0.2)",
+              "rgba(54, 162, 235, 0.2)",
+              "rgba(255, 206, 86, 0.2)",
+              "rgba(75, 192, 192, 0.2)",
+              "rgba(153, 102, 255, 0.2)",
+              "rgba(255, 159, 64, 0.2)",
+              "rgba(100, 149, 237, 0.2)",
+              "rgba(240, 128, 128, 0.2)",
+              "rgba(154, 205, 50, 0.2)",
+              "rgba(255, 20, 147, 0.2)",
+            ],
+            borderColor: [
+              "rgba(255, 99, 132, 1)",
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(153, 102, 255, 1)",
+              "rgba(255, 159, 64, 1)",
+              "rgba(100, 149, 237, 1)",
+              "rgba(240, 128, 128, 1)",
+              "rgba(154, 205, 50, 1)",
+              "rgba(255, 20, 147, 1)",
+            ],
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true },
+          tooltip: { enabled: true },
+        },
+      },
+    });
+  }
+  return canvas;
+}
+
+// Producto más vendido del mes
+
+function mostSoldProduct(salesArray) {
+  let monthSales = monthlySales(salesArray);
+
+  let quantities = productQuantities(monthSales);
 
   let mostSold = {
     name: "",
@@ -60,15 +138,7 @@ function mostSoldProduct(salesArray) {
 function lessSoldProduct(salesArray) {
   let monthSales = monthlySales(salesArray);
 
-  let quantities = {};
-
-  monthSales.forEach((sale) => {
-    if (quantities[sale.productSold]) {
-      quantities[sale.productSold] += sale.quantity;
-    } else {
-      quantities[sale.productSold] = sale.quantity;
-    }
-  });
+  let quantities = productQuantities(monthSales);
 
   let lessSold = {
     name: "",
@@ -114,31 +184,12 @@ function showSales() {
     return;
   }
 
-  resumeContent.innerHTML = `
-    <p>Ventas registradas: ${sales.length}</p>
-    <p>Monto total: $${totalSales(sales)}</p>
-  `;
-  resumeNode.appendChild(resumeContent);
-}
-
-// Reportes: semanal, mensual, anual
-
-function showReports() {
-  if (sales.length === 0) {
-    reportsContent.innerHTML = "<h3>No tenés ventas registradas</h3>";
-    reportsNode.appendChild(reportsContent);
-    return;
-  }
-
   let lastWeek = dayjs().subtract(7, "day");
   let lastYear = dayjs().subtract(1, "year");
   let monthSales = monthlySales(sales);
   let mostSold = mostSoldProduct(sales);
-  let lessSold = lessSoldProduct(sales);
-  let featured = featuredSale(sales);
-
-  reportsContent.innerHTML = `
-    <div class="reports">
+  resumeContent.innerHTML = `
+  <div class="reports">
         <p>Ventas de la última semana: $${totalSales(
           sales.filter((sale) => dayjs(sale.date).isAfter(lastWeek))
         )}</p>
@@ -147,33 +198,62 @@ function showReports() {
           sales.filter((sale) => dayjs(sale.date).isAfter(lastYear))
         )}</p>
     </div>
+    <p>Ventas históricas: ${sales.length}</p>
+    <p>Monto total: $${totalSales(sales)}</p>
+    <h3>Promedio diario de ventas en el ultimo mes:</h3> 
+    <p>$${dailyAverage(sales)}</p>
+    <div>
+        <h3>Producto más vendido del mes:</h3> 
+        <p>Este ha sido el producto más demandado el último mes:<br>${
+          mostSold.name
+        }</p>
+        <p>¡Se vendieron ${mostSold.quantity} unidades!</p>
+    </div>
+  `;
+  resumeNode.appendChild(resumeContent);
+}
+
+// Reportes
+
+function showReports() {
+  if (sales.length === 0) {
+    reportsContent.innerHTML = "<h3>No tenés ventas registradas</h3>";
+    reportsNode.appendChild(reportsContent);
+    return;
+  }
+
+  let lessSold = lessSoldProduct(sales);
+  let featured = featuredSale(sales);
+
+  let totalSalesChart = salesChart("total-sales", productQuantities(sales));
+
+  reportsContent.innerHTML = `
+    
     <div class="featured-reports">
-        <div>
-            <h3>Producto más vendido del mes:</h3> 
-            <p>Este ha sido el producto mas demandado el ùltimo mes:<br>${
-              mostSold.name
-            }</p>
-            <p>¡Se vendieron ${mostSold.quantity} unidades!</p>
-        </div>
+        
         <div>
             <h3>Producto menos vendido del mes:</h3> 
-            <p>Este ha sido el producto menos demandado el ùltimo mes:<br>${
+            <p>Este ha sido el producto menos demandado el último mes:<br>${
               lessSold.name
             }</p>
             <p>Se vendieron solo ${lessSold.quantity} unidades</p>
         </div>
-        <h3>Venta destacada del mes:</h3> 
-        <p> 
-            El ${dayjs(featured.date).format("DD [de] MMMM [de] YYYY")}
-            vendiste a un mismo cliente ${featured.quantity} 
-            unidades de ${featured.productSold} 
-            por $${featured.transactionValue} <br>
-            ¡Felicidades!
-        </p>
-        <h3>Promedio diario de ventas en el ultimo mes:</h3> 
-        <p>$${dailyAverage(sales)}</p>
+         <div>
+            <h3>Venta destacada del mes:</h3> 
+            <p> 
+                El ${dayjs(featured.date).format("DD [de] MMMM [de] YYYY")}
+                vendiste a un mismo cliente ${featured.quantity} 
+                unidades de ${featured.productSold} 
+                por $${featured.transactionValue} <br>
+                ¡Felicidades!
+            </p>
+        </div>
+        
     </div>
   `;
+  let div = document.createElement("div");
+  div.appendChild(totalSalesChart);
+  reportsContent.appendChild(div);
   reportsNode.appendChild(reportsContent);
 }
 
@@ -181,3 +261,4 @@ function showReports() {
 
 let resumeContent = document.createElement("section");
 let reportsContent = document.createElement("section");
+reportsContent.className = "grid-container";

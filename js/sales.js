@@ -74,10 +74,11 @@ function newRow(sale) {
   deleteButton.onclick = () => {
     sales = sales.filter((saleToDel) => saleToDel !== sale);
     row.remove();
+
     showSales();
     showReports();
-
     localStorage.setItem("sales", JSON.stringify(sales));
+    loadSales();
   };
 
   deleteColumn.appendChild(deleteButton);
