@@ -25,7 +25,10 @@ h2 {
 }
 
 h3 {
-  font-size: 2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #116c9a;
+  margin-bottom: 7px;
 }
 
 h4 {
@@ -48,8 +51,8 @@ footer {
   display: grid;
   position: fixed;
   width: 100%;
-  background-color: #2a2208;
-  color: #f3f3f3;
+  background: linear-gradient(60deg, #17082b 30%, #33a695 100%);
+  color: #e9e8ee;
   text-align: center;
   padding: 13px;
   z-index: 100;
@@ -79,15 +82,15 @@ main {
   left: 0;
   width: 70%;
   height: 100%;
-  background-color: #116c9a;
-  color: #f3f3f3;
+  background-color: #17082b;
+  color: #e9e8ee;
   padding: 1rem;
   z-index: 200;
 }
 .sidebar a {
-  color: #f3f3f3;
+  color: #e9e8ee;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
 .sidebar.sidebar-active {
@@ -98,24 +101,23 @@ main {
   display: block;
   background: none;
   border: none;
-  color: #f3f3f3;
+  color: #e9e8ee;
   font-size: 1.3rem;
   justify-self: end;
-}
-
-.p-m {
-  padding: 13px;
 }
 
 .main-section {
   flex: 0 0 auto;
   height: 70vh;
-  width: 100%;
   scroll-snap-align: start;
   -webkit-scroll-snap-align: start;
   padding: 3rem 18px;
   margin: 3rem 0;
   overflow-y: auto;
+}
+
+div {
+  margin-top: 7px;
 }
 
 .grid-container {
@@ -127,6 +129,10 @@ main {
   height: 100%;
   padding-bottom: 7px;
   align-items: center;
+}
+
+.resume-container {
+  height: auto;
 }
 
 .chart-container {
@@ -147,6 +153,56 @@ canvas {
   height: 100% !important;
 }
 
+input,
+select {
+  padding: 0.8vw;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+select,
+option {
+  max-width: 100%;
+  padding: 0.2vw;
+  white-space: normal;
+}
+
+button {
+  background-color: #33a695;
+  color: white;
+  padding: 1vw 1.5vw;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: linear-gradient(60deg, #17082b 30%, #33a695 100%);
+}
+
+table {
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+th,
+td {
+  max-width: 100%;
+  word-wrap: break-word;
+  padding: 1vw;
+  text-align: left;
+  border-bottom: 1px solid #d0d0f4;
+}
+
+th {
+  background-color: #d0d0f4;
+}
+
+tr:nth-child(even) {
+  background-color: #e9e8ee;
+}
+
 @media (min-width: 768px) {
   h1 {
     font-size: 3rem;
@@ -165,9 +221,23 @@ canvas {
   label {
     font-size: 1.3rem;
   }
+  .resume-container,
   .products-container,
   .reports-container {
     grid-template-columns: 1fr 1fr;
+  }
+  .sales-container {
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+  }
+  .sales-register {
+    gap: 20px;
+    height: auto;
+    grid-column: 2/3;
+  }
+  .sales-history {
+    grid-column: 1/2;
+    grid-row: 1/2;
   }
 }
 @media (min-width: 1024px) {
@@ -185,7 +255,7 @@ canvas {
     padding: 1rem;
     height: 70vh;
     width: 20%;
-    background-color: #116c9a;
+    background-color: #17082b;
   }
   .sidebar a,
   .sidebar.sidebar-active a {

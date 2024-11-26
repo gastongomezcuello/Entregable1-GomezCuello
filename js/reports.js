@@ -204,19 +204,34 @@ function showSales() {
   let monthSales = monthlySales(sales);
   let mostSold = mostSoldProduct(sales);
   resumeContent.innerHTML = `
-  <div class="reports">
-        <p>Ventas de la última semana: $${totalSales(
+  <div>
+        <h3>Ventas de la última semana:</h3>
+        <p> $${totalSales(
           sales.filter((sale) => dayjs(sale.date).isAfter(lastWeek))
         )}</p>
-        <p>Ventas del último mes: $${totalSales(monthSales)}</p>
-        <p>Ventas del último año: $${totalSales(
+    </div>
+    <div>
+        <h3>Ventas del último mes:</h3>
+        <p> $${totalSales(monthSales)}</p>
+    </div>
+    <div>
+        <h3>Ventas del último año:</h3>
+        <p> $${totalSales(
           sales.filter((sale) => dayjs(sale.date).isAfter(lastYear))
         )}</p>
     </div>
-    <p>Ventas históricas: ${sales.length}</p>
-    <p>Monto total: $${totalSales(sales)}</p>
-    <h3>Promedio diario de ventas en el ultimo mes:</h3> 
-    <p>$${dailyAverage(sales)}</p>
+    <div>
+        <h3>Ventas totales:</h3>
+        <p> ${sales.length}</p>
+    </div>
+    <div>
+        <h3>Monto total de ventas:</h3>
+        <p> $${totalSales(sales)}</p>
+    </div>
+    <div>
+        <h3>Promedio diario de ventas en el ultimo mes:</h3> 
+        <p>$${dailyAverage(sales)}</p>
+    </div>
     <div>
         <h3>Producto más vendido del mes:</h3> 
         <p>Este ha sido el producto más demandado el último mes:<br>${
@@ -276,5 +291,6 @@ function showReports() {
 // Nodos
 
 let resumeContent = document.createElement("section");
+resumeContent.className = "grid-container resume-container";
 let reportsContent = document.createElement("section");
 reportsContent.className = "grid-container reports-container";
