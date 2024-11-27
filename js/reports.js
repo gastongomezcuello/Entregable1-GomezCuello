@@ -197,7 +197,7 @@ function dailyAverage(salesArray) {
 function showSales() {
   if (sales.length === 0) {
     resumeContent.innerHTML = "<h3>No tenés ventas registradas</h3>";
-    resumeNode.appendChild(resumeContent);
+    homeNode.appendChild(resumeContent);
     return;
   }
 
