@@ -64,6 +64,7 @@ main {
   margin-top: 20vh;
   scroll-snap-type: y mandatory;
   -webkit-scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
   overflow-y: auto;
   -webkit-overflow-y: auto;
   height: 70vh;
@@ -120,6 +121,10 @@ div {
   width: 100%;
   height: auto;
   padding-bottom: $padding-margin-md;
+}
+.products-container,
+.reports-container {
+  padding-bottom: 10vh;
 }
 
 .chart-container {
