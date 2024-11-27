@@ -18,7 +18,7 @@ let salesNode = document.getElementById("sales");
 let productsNode = document.getElementById("products");
 let reportsNode = document.getElementById("reports");
 
-let resumeLinkNode = document.getElementById("resume-link");
+let homeLinkNode = document.getElementById("home-link");
 let salesLinkNode = document.getElementById("sales-link");
 let productsLinkNode = document.getElementById("products-link");
 let reportsLinkNode = document.getElementById("reports-link");
@@ -34,7 +34,7 @@ function sidebarActive() {
 }
 
 myOnClick(toggleButtonNode, sidebarActive);
-myOnClick(resumeLinkNode, sidebarActive);
+myOnClick(homeLinkNode, sidebarActive);
 myOnClick(salesLinkNode, sidebarActive);
 myOnClick(productsLinkNode, sidebarActive);
 myOnClick(reportsLinkNode, sidebarActive);

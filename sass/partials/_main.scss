@@ -97,7 +97,7 @@ main {
 
 .main-section {
   flex: 0 0 auto;
-  height: 70vh;
+  height: auto;
   scroll-snap-align: start;
   -webkit-scroll-snap-align: start;
   padding: 3rem $lateral-padding-md;
@@ -120,20 +120,22 @@ div {
 
 .chart-container {
   width: 100%;
-  height: 100%;
+  height: auto;
   max-height: 50vh;
 }
-
+.reports-container {
+  height: 80%;
+}
 .featured-reports {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 100%;
+  height: auto;
 }
 
 canvas {
   width: 100% !important;
-  height: 100% !important;
+  height: auto !important;
 }
 
 input,
