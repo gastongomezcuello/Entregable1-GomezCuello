@@ -217,6 +217,17 @@ function showSales() {
         <p> $${totalSales(monthSales)}</p>
     </div>
     <div>
+        <h3>Promedio diario de ventas en el ultimo mes:</h3> 
+        <p>$${dailyAverage(sales)}</p>
+    </div>
+    <div>
+        <h3>Producto más vendido del mes:</h3> 
+        <p>Este ha sido el producto más demandado el último mes:<br>${
+          mostSold.name
+        }</p>
+        <p>¡Se vendieron ${mostSold.quantity} unidades!</p>
+    </div>
+    <div>
         <h3>Ventas del último año:</h3>
         <p> $${totalSales(
           sales.filter((sale) => dayjs(sale.date).isAfter(lastYear))
@@ -230,17 +241,7 @@ function showSales() {
         <h3>Monto total de ventas:</h3>
         <p> $${totalSales(sales)}</p>
     </div>
-    <div>
-        <h3>Promedio diario de ventas en el ultimo mes:</h3> 
-        <p>$${dailyAverage(sales)}</p>
-    </div>
-    <div>
-        <h3>Producto más vendido del mes:</h3> 
-        <p>Este ha sido el producto más demandado el último mes:<br>${
-          mostSold.name
-        }</p>
-        <p>¡Se vendieron ${mostSold.quantity} unidades!</p>
-    </div>
+    
   `;
   resumeNode.appendChild(resumeContent);
 }
