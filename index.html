@@ -34,34 +34,31 @@
     <main>
       <section class="main-section" id="resume">
         <h2>Resumen de Ventas</h2>
+        <section class="grid-container sales-register" id="sales-register-add">
+          <h3>Nueva venta</h3>
+          <div>
+            <label for="product-selector-add">Producto:</label>
+            <select
+              name=""
+              class="product-selector"
+              id="product-selector-add"
+            ></select>
+          </div>
+          <div>
+            <label for="quantity-input">Cantidad:</label>
+            <input type="number" name="" id="quantity-input" min="1" />
+          </div>
+          <div>
+            <label for="date-input">Fecha de venta:</label>
+            <input type="datetime-local" name="" id="date-input" />
+          </div>
+
+          <button id="add-sale">Agregar venta</button>
+        </section>
       </section>
       <section class="main-section" id="sales">
         <h2>Registro de Ventas</h2>
-        <div class="grid-container sales-container">
-          <section
-            class="grid-container sales-register"
-            id="sales-register-add"
-          >
-            <h3>Nueva venta</h3>
-            <div>
-              <label for="product-selector-add">Producto:</label>
-              <select
-                name=""
-                class="product-selector"
-                id="product-selector-add"
-              ></select>
-            </div>
-            <div>
-              <label for="quantity-input">Cantidad:</label>
-              <input type="number" name="" id="quantity-input" min="1" />
-            </div>
-            <div>
-              <label for="date-input">Fecha de venta:</label>
-              <input type="datetime-local" name="" id="date-input" />
-            </div>
-
-            <button id="add-sale">Agregar venta</button>
-          </section>
+        <div class="grid-container">
           <section class="sales-history">
             <h3>Historial de ventas</h3>
             <button id="clear-sales">Borrar todas las ventas</button>
