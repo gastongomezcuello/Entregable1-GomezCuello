@@ -10,8 +10,9 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  overflow-y: hidden;
-  -webkit-overflow-y: hidden;
+  overflow-y: auto;
+  -webkit-overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 h1 {
   font-size: $font-mobile-size-xxl;
@@ -103,8 +104,8 @@ main {
   min-height: 70vh;
   scroll-snap-align: start;
   -webkit-scroll-snap-align: start;
-  // padding: 3rem $lateral-padding-md;
-  // margin: 3rem 0;
+  padding: 3rem $lateral-padding-md;
+  margin: 3rem 0;
   overflow-y: auto;
 }
 div {
