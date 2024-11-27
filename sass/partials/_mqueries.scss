@@ -37,6 +37,23 @@
 }
 
 @media (min-width: 1024px) {
+  h1 {
+    font-size: $font-desktop-size-xxl;
+  }
+  h2 {
+    font-size: $font-desktop-size-xl;
+  }
+  h3 {
+    font-size: $font-desktop-size-lg;
+  }
+  h4 {
+    font-size: $font-desktop-size-md;
+  }
+  p,
+  tr,
+  label {
+    font-size: $font-desktop-size-sm;
+  }
   main {
     width: 80%;
     right: 0;
