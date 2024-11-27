@@ -38,11 +38,18 @@
       <section class="main-section" id="sales">
         <h2>Registro de Ventas</h2>
         <div class="grid-container sales-container">
-          <section class="grid-container sales-register" id="sales-register">
+          <section
+            class="grid-container sales-register"
+            id="sales-register-add"
+          >
             <h3>Nueva venta</h3>
             <div>
-              <label for="product-selector">Producto:</label>
-              <select name="" id="product-selector"></select>
+              <label for="product-selector-add">Producto:</label>
+              <select
+                name=""
+                class="product-selector"
+                id="product-selector-add"
+              ></select>
             </div>
             <div>
               <label for="quantity-input">Cantidad:</label>
@@ -50,7 +57,7 @@
             </div>
             <div>
               <label for="date-input">Fecha de venta:</label>
-              <input type="date" name="" id="date-input" />
+              <input type="datetime-local" name="" id="date-input" />
             </div>
 
             <button id="add-sale">Agregar venta</button>
@@ -58,9 +65,27 @@
           <section class="sales-history">
             <h3>Historial de ventas</h3>
             <button id="clear-sales">Borrar todas las ventas</button>
+            <label for="from-date">Desde:</label>
+            <input type="date" name="" id="from-date" />
+            <label for="to-date">Hasta:</label>
+            <input type="date" name="" id="to-date" />
+            <label for="product-selector-filter">Producto:</label>
+            <select
+              name=""
+              class="product-selector"
+              id="product-selector-filter"
+            >
+              <option>Todos los productos</option>
+            </select>
+            <label for="greater-than">Monto mayor a: $</label>
+            <input type="number" name="" id="greater-than" />
+            <label for="less-than">Monto menor a: $</label>
+            <input type="number" name="" id="less-than" />
+            <button id="filter-sales">Filtrar ventas</button>
             <table id="sales-table">
               <thead>
                 <tr>
+                  <th>Fecha</th>
                   <th>Producto</th>
                   <th>Cantidad</th>
                   <th>Monto</th>

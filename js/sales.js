@@ -41,7 +41,7 @@ async function salesRegister(productName, saleAmount, date) {
     };
 
     sales.push(sale);
-    newRow(sale);
+    newTable(sales);
 
     localStorage.setItem("sales", JSON.stringify(sales));
     return "Has registrado una venta.";
@@ -50,10 +50,65 @@ async function salesRegister(productName, saleAmount, date) {
   }
 }
 
-// Agrergar una fila a la tabla de ventas
+// Tabla de ventas
+
+function filterSales(from, to, product, graterThan, lessThan) {
+  let filterDefaults = {
+    from: "1900-01-01",
+    to: "9999-12-31",
+    product: "Todos los productos",
+    graterThan: 0,
+    lessThan: 999999999,
+  };
+
+  from = from || filterDefaults.from;
+  to = to || filterDefaults.to;
+  product = product || filterDefaults.product;
+  graterThan = graterThan || filterDefaults.graterThan;
+  lessThan = lessThan || filterDefaults.lessThan;
+
+  let filteredSales = sales.filter((sale) => {
+    let saleDate = dayjs(sale.date);
+    let fromDate = dayjs(from);
+    let toDate = dayjs(to);
+
+    if (product === "Todos los productos") {
+      return (
+        saleDate.isAfter(fromDate) &&
+        saleDate.isBefore(toDate) &&
+        sale.transactionValue > graterThan &&
+        sale.transactionValue < lessThan
+      );
+    } else {
+      return (
+        saleDate.isAfter(fromDate) &&
+        saleDate.isBefore(toDate) &&
+        sale.productSold === product &&
+        sale.transactionValue > graterThan &&
+        sale.transactionValue < lessThan
+      );
+    }
+  });
+
+  if (filteredSales.length === 0) {
+    return sales;
+  }
+  return filteredSales;
+}
+
+function newTable(salesArray) {
+  tableBody.innerHTML = "";
+  salesArray.forEach((sale) => {
+    newRow(sale);
+  });
+}
 
 function newRow(sale) {
   let row = document.createElement("tr");
+
+  let date = document.createElement("td");
+  date.innerText = dayjs(sale.date).format("DD/MM/YYYY");
+  row.appendChild(date);
 
   let product = document.createElement("td");
   product.innerText = sale.productSold;
@@ -103,22 +158,45 @@ function clearLocalStorage() {
 // Nodos
 
 let salesRegisterNode = document.getElementById("sales-register");
+let addProductSelectorNode = document.getElementById("product-selector-add");
 let quantityInputNode = document.getElementById("quantity-input");
 let dateInputNode = document.getElementById("date-input");
-let addSale = document.getElementById("add-sale");
+let addSaleButton = document.getElementById("add-sale");
+
 let tableBody = document.getElementById("sales-table").querySelector("tbody");
 let clearSalesNode = document.getElementById("clear-sales");
 
+let filterSalesButton = document.getElementById("filter-sales");
+let filterFromNode = document.getElementById("from-date");
+let filterToNode = document.getElementById("to-date");
+let filterProductSelectorNode = document.getElementById(
+  "product-selector-filter"
+);
+let filterGTNode = document.getElementById("greater-than");
+let filterLTNode = document.getElementById("less-than");
 // Eventos
 
-addSale.onclick = async () => {
+filterSalesButton.onclick = () => {
+  let res = filterSales(
+    filterFromNode.value,
+    filterToNode.value,
+    filterProductSelectorNode.value,
+    filterGTNode.value,
+    filterLTNode.value
+  );
+
+  console.log(res);
+
+  newTable(res);
+};
+addSaleButton.onclick = async () => {
   let previousMessage = document.querySelector("h4");
   if (previousMessage) {
     previousMessage.remove();
   }
 
   let res = await salesRegister(
-    productSelectorNode.value,
+    addProductSelectorNode.value,
     quantityInputNode.value,
     dateInputNode.value
   );

@@ -12,12 +12,14 @@ async function getProducts() {
 
 // Seleccionar los productos
 
-async function productsSelector() {
+async function productsSelectors() {
   let products = await getProducts();
-  products.forEach((element) => {
-    let option = document.createElement("option");
-    option.innerText = element.name;
-    productSelectorNode.appendChild(option);
+  productSelectorNodes.forEach((productSelectorNode) => {
+    products.forEach((element) => {
+      let option = document.createElement("option");
+      option.innerText = element.name;
+      productSelectorNode.appendChild(option);
+    });
   });
 }
 
@@ -43,6 +45,6 @@ async function showProducts() {
 
 // Nodos
 
-let productSelectorNode = document.getElementById("product-selector");
+let productSelectorNodes = document.querySelectorAll(".product-selector");
 let ProductsContainer = document.createElement("section");
 ProductsContainer.className = "grid-container products-container";
