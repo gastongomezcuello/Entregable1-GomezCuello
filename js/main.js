@@ -13,7 +13,7 @@ function myOnClick(node, callback) {
 let toggleButtonNode = document.getElementById("menu-toggle");
 let sidebarNode = document.querySelector(".sidebar");
 
-let resumeNode = document.getElementById("resume");
+let homeNode = document.getElementById("home");
 let salesNode = document.getElementById("sales");
 let productsNode = document.getElementById("products");
 let reportsNode = document.getElementById("reports");

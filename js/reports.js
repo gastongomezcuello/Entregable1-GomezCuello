@@ -243,7 +243,7 @@ function showSales() {
     </div>
     
   `;
-  resumeNode.appendChild(resumeContent);
+  homeNode.appendChild(resumeContent);
 }
 
 // Reportes
