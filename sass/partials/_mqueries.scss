@@ -1,3 +1,24 @@
+@media (max-width: 380px) {
+  h1 {
+    font-size: $font-xs-size-xxl;
+  }
+  h2 {
+    font-size: $font-xs-size-xl;
+  }
+  h3 {
+    font-size: $font-xs-size-lg;
+  }
+  h4 {
+    font-size: $font-xs-size-md;
+  }
+  p,
+  th,
+  td,
+  label,
+  button {
+    font-size: $font-xs-size-sm;
+  }
+}
 @media (min-width: 768px) {
   h1 {
     font-size: $font-tablet-size-xxl;
@@ -12,8 +33,10 @@
     font-size: $font-tablet-size-md;
   }
   p,
-  tr,
-  label {
+  th,
+  td,
+  label,
+  button {
     font-size: $font-tablet-size-sm;
   }
 
@@ -51,8 +74,10 @@
     font-size: $font-desktop-size-md;
   }
   p,
-  tr,
-  label {
+  th,
+  td,
+  label,
+  button {
     font-size: $font-desktop-size-sm;
   }
   main {
