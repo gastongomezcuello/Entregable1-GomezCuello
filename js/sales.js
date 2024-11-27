@@ -153,6 +153,7 @@ function clearLocalStorage() {
   sales = [];
   tableBody.innerHTML = "";
   showSales();
+  showReports();
 }
 
 // Nodos
