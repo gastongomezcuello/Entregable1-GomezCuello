@@ -119,7 +119,7 @@ function newRow(sale) {
   row.appendChild(quantity);
 
   let value = document.createElement("td");
-  value.innerText = sale.transactionValue;
+  value.innerText = `$${sale.transactionValue}`;
   row.appendChild(value);
 
   let deleteColumn = document.createElement("td");

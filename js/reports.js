@@ -217,7 +217,7 @@ function showSales() {
         <p> $${totalSales(monthSales)}</p>
     </div>
     <div>
-        <h3>Promedio diario de ventas en el ultimo mes:</h3> 
+        <h3>Promedio diario de ventas en el último mes:</h3> 
         <p>$${dailyAverage(sales)}</p>
     </div>
     <div>
