@@ -109,6 +109,7 @@ main {
 .main-section {
   flex: 0 0 auto;
   height: auto;
+  min-height: 70vh;
   scroll-snap-align: start;
   -webkit-scroll-snap-align: start;
   padding: 3rem 18px;
@@ -217,9 +218,6 @@ table tr:nth-child(even) {
   tr,
   label {
     font-size: 1.6rem;
-  }
-  .main-section {
-    height: 100%;
   }
   .resume-container,
   .products-container,
