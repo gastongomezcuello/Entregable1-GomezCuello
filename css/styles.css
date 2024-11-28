@@ -139,11 +139,6 @@ div {
 .products-container,
 .reports-container {
   padding-bottom: 10vh;
-  min-height: 70vh;
-}
-
-.sales-register {
-  min-height: auto;
 }
 
 .featured-reports {
