@@ -106,11 +106,11 @@ function salesChart(chartID, productQties) {
           legend: {
             display: true,
             labels: {
-              boxWidth: 20,
-              padding: 15,
+              boxWidth: 10,
+              padding: 10,
               textAlign: "left",
               font: {
-                size: 11,
+                size: 9,
               },
             },
             position: "bottom",
@@ -118,7 +118,7 @@ function salesChart(chartID, productQties) {
           tooltip: {
             enabled: true,
             bodyFont: {
-              size: 11,
+              size: 9,
             },
           },
         },
@@ -287,7 +287,7 @@ function showReports() {
   let div = document.createElement("div");
   div.className = "chart-container";
   div.appendChild(totalSalesChart);
-  reportsContent.appendChild(div);
+  reportsContent.insertBefore(div, reportsContent.firstChild);
   reportsNode.appendChild(reportsContent);
 }
 
