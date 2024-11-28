@@ -126,7 +126,7 @@ function newRow(sale) {
   let row = document.createElement("tr");
 
   let date = document.createElement("td");
-  date.innerText = dayjs(sale.date).format("DD/MM/YYYY");
+  date.innerText = dayjs(sale.date).format("DD/MM/YY");
   row.appendChild(date);
 
   let product = document.createElement("td");
