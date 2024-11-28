@@ -52,6 +52,61 @@ async function salesRegister(productName, saleAmount, date) {
 
 // Tabla de ventas
 
+function newTable(salesArray) {
+  tableBody.innerHTML = "";
+  salesArray.forEach((sale) => {
+    newRow(sale);
+  });
+}
+
+function newRow(sale) {
+  let row = document.createElement("tr");
+
+  let date = document.createElement("td");
+  date.innerText = dayjs(sale.date).format("DD/MM/YY");
+  row.appendChild(date);
+
+  let product = document.createElement("td");
+  product.innerText = sale.productSold;
+  row.appendChild(product);
+
+  let quantity = document.createElement("td");
+  quantity.innerText = sale.quantity;
+  row.appendChild(quantity);
+
+  let value = document.createElement("td");
+  value.innerText = `$${sale.transactionValue}`;
+  row.appendChild(value);
+
+  let deleteColumn = document.createElement("td");
+  let deleteButton = document.createElement("button");
+  deleteButton.innerText = "Eliminar";
+
+  deleteButton.onclick = () => {
+    confirmAlert(() => {
+      sales = sales.filter((saleToDel) => saleToDel !== sale);
+      row.remove();
+
+      showSales();
+      showReports();
+      localStorage.setItem("sales", JSON.stringify(sales));
+      loadSales();
+      return "Venta eliminada con éxito.";
+    });
+  };
+
+  deleteColumn.appendChild(deleteButton);
+  row.appendChild(deleteColumn);
+
+  tableBody.insertBefore(row, tableBody.firstChild);
+
+  if (tableBody.children.length > 14) {
+    tableBody.lastChild.remove();
+  }
+}
+
+// Filtrar ventas
+
 function filterSales(from, to, product, graterThan, lessThan) {
   let filterDefaults = {
     from: "1900-01-01",
@@ -115,54 +170,26 @@ function filterSales(from, to, product, graterThan, lessThan) {
   };
 }
 
-function newTable(salesArray) {
-  tableBody.innerHTML = "";
-  salesArray.forEach((sale) => {
-    newRow(sale);
+// Alerta de confirmación
+
+function confirmAlert(callback) {
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: "No podrás revertir esta acción!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Sí, eliminar!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Desapareció!",
+        text: callback(),
+        icon: "success",
+      });
+    }
   });
-}
-
-function newRow(sale) {
-  let row = document.createElement("tr");
-
-  let date = document.createElement("td");
-  date.innerText = dayjs(sale.date).format("DD/MM/YY");
-  row.appendChild(date);
-
-  let product = document.createElement("td");
-  product.innerText = sale.productSold;
-  row.appendChild(product);
-
-  let quantity = document.createElement("td");
-  quantity.innerText = sale.quantity;
-  row.appendChild(quantity);
-
-  let value = document.createElement("td");
-  value.innerText = `$${sale.transactionValue}`;
-  row.appendChild(value);
-
-  let deleteColumn = document.createElement("td");
-  let deleteButton = document.createElement("button");
-  deleteButton.innerText = "Eliminar";
-
-  deleteButton.onclick = () => {
-    sales = sales.filter((saleToDel) => saleToDel !== sale);
-    row.remove();
-
-    showSales();
-    showReports();
-    localStorage.setItem("sales", JSON.stringify(sales));
-    loadSales();
-  };
-
-  deleteColumn.appendChild(deleteButton);
-  row.appendChild(deleteColumn);
-
-  tableBody.insertBefore(row, tableBody.firstChild);
-
-  if (tableBody.children.length > 14) {
-    tableBody.lastChild.remove();
-  }
 }
 
 // Limpiar el localStorage
@@ -173,6 +200,7 @@ function clearLocalStorage() {
   tableBody.innerHTML = "";
   showSales();
   showReports();
+  return "Listado de ventas limpio con éxito.";
 }
 
 // Nodos
@@ -199,24 +227,27 @@ let filterLTNode = document.getElementById("less-than");
 // Eventos
 
 filterSalesButton.onclick = () => {
-  let previousMessage = document.querySelector(".filter-message");
-  if (previousMessage) {
-    previousMessage.remove();
-  }
+  try {
+    let previousMessage = document.querySelector(".filter-message");
+    if (previousMessage) {
+      previousMessage.remove();
+    }
 
-  let res = filterSales(
-    filterFromNode.value,
-    filterToNode.value,
-    filterProductSelectorNode.value,
-    filterGTNode.value,
-    filterLTNode.value
-  );
-  let message = document.createElement("h4");
-  message.className = "filter-message";
-  message.innerText = res.message;
-  salesHistoryNode.insertBefore(message, filterSalesButton);
+    let res = filterSales(
+      filterFromNode.value,
+      filterToNode.value,
+      filterProductSelectorNode.value,
+      filterGTNode.value,
+      filterLTNode.value
+    );
+    let message = document.createElement("h4");
+    message.className = "filter-message";
+    message.innerText = res.message;
 
-  newTable(res.filteredSales);
+    salesHistoryNode.insertBefore(message, filterSalesButton);
+
+    newTable(res.filteredSales);
+  } catch (err) {}
 };
 addSaleButton.onclick = async () => {
   let previousMessage = document.querySelector(".register-message");
@@ -238,4 +269,4 @@ addSaleButton.onclick = async () => {
   showReports();
 };
 
-clearSalesNode.onclick = clearLocalStorage;
+clearSalesNode.onclick = () => confirmAlert(() => clearLocalStorage());
