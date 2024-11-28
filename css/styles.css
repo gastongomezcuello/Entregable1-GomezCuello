@@ -207,7 +207,7 @@ table tr:nth-child(even) {
   background-color: #e9e8ee;
 }
 
-@media (max-width: 380px) {
+@media (max-width: 410px) {
   h1 {
     font-size: 2rem;
   }
