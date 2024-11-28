@@ -87,10 +87,10 @@ function newRow(sale) {
       sales = sales.filter((saleToDel) => saleToDel !== sale);
       row.remove();
 
+      localStorage.setItem("sales", JSON.stringify(sales));
       showSales();
       showReports();
-      localStorage.setItem("sales", JSON.stringify(sales));
-      loadSales();
+
       return "Venta eliminada con éxito.";
     });
   };
