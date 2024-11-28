@@ -125,16 +125,12 @@ div {
 .products-container,
 .reports-container {
   padding-bottom: 10vh;
-}
-
-.chart-container {
-  width: 100%;
-  height: auto;
-  max-height: 50vh;
+  min-height: 70vh;
 }
 .reports-container {
-  height: 80%;
+  padding-bottom: 0;
 }
+
 .featured-reports {
   display: flex;
   flex-direction: column;
