@@ -55,12 +55,17 @@
       </section>
       <section class="main-section" id="sales">
         <h2>Historial de Ventas</h2>
-        <div class="grid-container">
-          <section id="sales-history">
+
+        <section id="sales-history">
+          <div>
             <label for="from-date">Desde:</label>
             <input type="date" name="" id="from-date" />
+          </div>
+          <div>
             <label for="to-date">Hasta:</label>
             <input type="date" name="" id="to-date" />
+          </div>
+          <div>
             <label for="product-selector-filter">Producto:</label>
             <select
               name=""
@@ -69,26 +74,32 @@
             >
               <option>Todos los productos</option>
             </select>
+          </div>
+          <div>
             <label for="greater-than">Monto mayor a: $</label>
             <input type="number" name="" id="greater-than" />
+          </div>
+          <div>
             <label for="less-than">Monto menor a: $</label>
             <input type="number" name="" id="less-than" />
+          </div>
+          <div>
             <button id="filter-sales">Filtrar ventas</button>
             <button id="clear-sales">Borrar todas las ventas</button>
-            <table id="sales-table">
-              <thead>
-                <tr>
-                  <th>Fecha</th>
-                  <th>Producto</th>
-                  <th>Cantidad</th>
-                  <th>Monto</th>
-                  <th>Borrar</th>
-                </tr>
-              </thead>
-              <tbody></tbody>
-            </table>
-          </section>
-        </div>
+          </div>
+          <table id="sales-table">
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Monto</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </section>
       </section>
       <section class="main-section" id="products">
         <h2>Listado de Productos</h2>

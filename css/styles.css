@@ -132,14 +132,18 @@ div {
   gap: 7px;
   width: 100%;
   height: auto;
-  padding-bottom: 7px;
 }
 
 .sales-register,
+.sales-history,
 .products-container,
 .reports-container {
   padding-bottom: 10vh;
   min-height: 70vh;
+}
+
+.sales-register {
+  min-height: auto;
 }
 
 .featured-reports {
@@ -256,11 +260,6 @@ table tr:nth-child(even) {
   .sales-container {
     grid-template-columns: 3fr 2fr;
     align-items: start;
-  }
-  .sales-register {
-    gap: 20px;
-    height: auto;
-    grid-column: 2/3;
   }
 }
 @media (min-width: 1024px) {

@@ -48,11 +48,6 @@
     grid-template-columns: 3fr 2fr;
     align-items: start;
   }
-  .sales-register {
-    gap: 20px;
-    height: auto;
-    grid-column: 2 / 3;
-  }
 }
 
 @media (min-width: 1024px) {

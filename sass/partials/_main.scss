@@ -120,13 +120,13 @@ div {
   gap: $padding-margin-md;
   width: 100%;
   height: auto;
-  padding-bottom: $padding-margin-md;
 }
+
 .sales-register,
+.sales-history,
 .products-container,
 .reports-container {
   padding-bottom: 10vh;
-  min-height: 70vh;
 }
 
 .featured-reports {
