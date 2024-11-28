@@ -67,6 +67,19 @@ function filterSales(from, to, product, graterThan, lessThan) {
   graterThan = graterThan || filterDefaults.graterThan;
   lessThan = lessThan || filterDefaults.lessThan;
 
+  if (from > to) {
+    return {
+      filteredSales: sales,
+      message: "La fecha de inicio no puede ser mayor a la fecha de fin.",
+    };
+  }
+  if (graterThan > lessThan) {
+    return {
+      filteredSales: sales,
+      message: "'Monto mayor a' no puede ser menor que 'Monto menor a'.",
+    };
+  }
+
   let filteredSales = sales.filter((sale) => {
     let saleDate = dayjs(sale.date);
     let fromDate = dayjs(from);
@@ -76,8 +89,8 @@ function filterSales(from, to, product, graterThan, lessThan) {
       return (
         saleDate.isAfter(fromDate) &&
         saleDate.isBefore(toDate) &&
-        sale.transactionValue > graterThan &&
-        sale.transactionValue < lessThan
+        sale.transactionValue >= graterThan &&
+        sale.transactionValue <= lessThan
       );
     } else {
       return (
@@ -91,9 +104,15 @@ function filterSales(from, to, product, graterThan, lessThan) {
   });
 
   if (filteredSales.length === 0) {
-    return sales;
+    return {
+      filteredSales: sales,
+      message: "No se encontraron ventas con los filtros aplicados.",
+    };
   }
-  return filteredSales;
+  return {
+    filteredSales,
+    message: "Filtros aplicados con éxito.",
+  };
 }
 
 function newTable(salesArray) {
@@ -158,6 +177,8 @@ function clearLocalStorage() {
 
 // Nodos
 
+let salesHistoryNode = document.getElementById("sales-history");
+
 let salesRegisterNode = document.getElementById("sales-register");
 let addProductSelectorNode = document.getElementById("product-selector-add");
 let quantityInputNode = document.getElementById("quantity-input");
@@ -178,6 +199,11 @@ let filterLTNode = document.getElementById("less-than");
 // Eventos
 
 filterSalesButton.onclick = () => {
+  let previousMessage = document.querySelector(".filter-message");
+  if (previousMessage) {
+    previousMessage.remove();
+  }
+
   let res = filterSales(
     filterFromNode.value,
     filterToNode.value,
@@ -185,13 +211,15 @@ filterSalesButton.onclick = () => {
     filterGTNode.value,
     filterLTNode.value
   );
+  let message = document.createElement("h4");
+  message.className = "filter-message";
+  message.innerText = res.message;
+  salesHistoryNode.insertBefore(message, filterSalesButton);
 
-  console.log(res);
-
-  newTable(res);
+  newTable(res.filteredSales);
 };
 addSaleButton.onclick = async () => {
-  let previousMessage = document.querySelector("h4");
+  let previousMessage = document.querySelector(".register-message");
   if (previousMessage) {
     previousMessage.remove();
   }
@@ -203,8 +231,9 @@ addSaleButton.onclick = async () => {
   );
 
   let message = document.createElement("h4");
+  message.className = "register-message";
   message.innerText = res;
-  salesRegisterNode.appendChild(message);
+  salesRegisterNode.insertBefore(message, addSaleButton);
   showSales();
   showReports();
 };
