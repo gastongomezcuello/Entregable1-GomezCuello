@@ -216,6 +216,8 @@ let addSaleButton = document.getElementById("add-sale");
 let tableBody = document.getElementById("sales-table").querySelector("tbody");
 let clearSalesNode = document.getElementById("clear-sales");
 
+let buttonsContainer = document.getElementById("buttons-container");
+
 let filterSalesButton = document.getElementById("filter-sales");
 let filterFromNode = document.getElementById("from-date");
 let filterToNode = document.getElementById("to-date");
@@ -227,28 +229,29 @@ let filterLTNode = document.getElementById("less-than");
 // Eventos
 
 filterSalesButton.onclick = () => {
-  try {
-    let previousMessage = document.querySelector(".filter-message");
-    if (previousMessage) {
-      previousMessage.remove();
-    }
+  // try {
+  let previousMessage = document.querySelector(".filter-message");
+  if (previousMessage) {
+    previousMessage.remove();
+  }
 
-    let res = filterSales(
-      filterFromNode.value,
-      filterToNode.value,
-      filterProductSelectorNode.value,
-      filterGTNode.value,
-      filterLTNode.value
-    );
-    let message = document.createElement("h4");
-    message.className = "filter-message";
-    message.innerText = res.message;
+  let res = filterSales(
+    filterFromNode.value,
+    filterToNode.value,
+    filterProductSelectorNode.value,
+    filterGTNode.value,
+    filterLTNode.value
+  );
+  let message = document.createElement("h4");
+  message.className = "filter-message";
+  message.innerText = res.message;
 
-    salesHistoryNode.insertBefore(message, filterSalesButton);
+  salesHistoryNode.insertBefore(message, buttonsContainer);
 
-    newTable(res.filteredSales);
-  } catch (err) {}
+  newTable(res.filteredSales);
+  // } catch (err) {}
 };
+
 addSaleButton.onclick = async () => {
   let previousMessage = document.querySelector(".register-message");
   if (previousMessage) {
