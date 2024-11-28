@@ -141,10 +141,6 @@ div {
   min-height: 70vh;
 }
 
-.reports-container {
-  padding-bottom: 0;
-}
-
 .featured-reports {
   display: flex;
   flex-direction: column;
