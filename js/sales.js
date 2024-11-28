@@ -69,8 +69,8 @@ function filterSales(from, to, product, graterThan, lessThan) {
 
   let filteredSales = sales.filter((sale) => {
     let saleDate = dayjs(sale.date);
-    let fromDate = dayjs(from).endOf("day");
-    let toDate = dayjs(to);
+    let fromDate = dayjs(from);
+    let toDate = dayjs(to).endOf("day");
 
     if (product === "Todos los productos") {
       return (
