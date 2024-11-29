@@ -207,7 +207,8 @@ function clearLocalStorage() {
 
 let salesHistoryNode = document.getElementById("sales-history");
 
-let salesRegisterNode = document.getElementById("sales-register");
+let salesFormNode = document.getElementById("sales-form");
+
 let addProductSelectorNode = document.getElementById("product-selector-add");
 let quantityInputNode = document.getElementById("quantity-input");
 let dateInputNode = document.getElementById("date-input");
@@ -265,7 +266,7 @@ addSaleButton.onclick = async () => {
   let message = document.createElement("h4");
   message.className = "register-message";
   message.innerText = res;
-  salesRegisterNode.insertBefore(message, addSaleButton);
+  salesFormNode.insertBefore(message, addSaleButton);
   showSales();
   showReports();
 };

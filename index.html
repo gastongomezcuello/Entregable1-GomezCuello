@@ -33,24 +33,26 @@
         <h2>Inicio</h2>
         <section class="grid-container sales-register" id="sales-register">
           <h3>Nueva venta</h3>
-          <div>
-            <label for="product-selector-add">Producto:</label>
-            <select
-              name=""
-              class="product-selector"
-              id="product-selector-add"
-            ></select>
-          </div>
-          <div>
-            <label for="quantity-input">Cantidad:</label>
-            <input type="number" name="" id="quantity-input" min="1" />
-          </div>
-          <div>
-            <label for="date-input">Fecha de venta:</label>
-            <input type="datetime-local" name="" id="date-input" />
-          </div>
+          <form id="sales-form">
+            <div>
+              <label for="product-selector-add">Producto:</label>
+              <select
+                name=""
+                class="product-selector"
+                id="product-selector-add"
+              ></select>
+            </div>
+            <div>
+              <label for="quantity-input">Cantidad:</label>
+              <input type="number" name="" id="quantity-input" min="1" />
+            </div>
+            <div>
+              <label for="date-input">Fecha de venta:</label>
+              <input type="datetime-local" name="" id="date-input" />
+            </div>
 
-          <button id="add-sale">Agregar venta</button>
+            <button type="reset" id="add-sale">Agregar venta</button>
+          </form>
         </section>
       </section>
       <section class="main-section" id="sales">
