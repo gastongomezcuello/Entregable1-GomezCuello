@@ -19,7 +19,7 @@ async function salesRegister(productName, saleAmount, date) {
       (product) => product.name.toLowerCase() === productName.toLowerCase()
     );
     if (!product) {
-      return "El producto no se encuentra en la lista. No me hackees la página.";
+      return "El producto no se encuentra en la lista. Por favor, seleccioná un producto válido.";
     }
 
     let amount = validPositiveNumber(saleAmount);
@@ -229,7 +229,6 @@ let filterLTNode = document.getElementById("less-than");
 // Eventos
 
 filterSalesButton.onclick = () => {
-  // try {
   let previousMessage = document.querySelector(".filter-message");
   if (previousMessage) {
     previousMessage.remove();
@@ -249,7 +248,6 @@ filterSalesButton.onclick = () => {
   salesHistoryNode.insertBefore(message, buttonsContainer);
 
   newTable(res.filteredSales);
-  // } catch (err) {}
 };
 
 addSaleButton.onclick = async () => {
